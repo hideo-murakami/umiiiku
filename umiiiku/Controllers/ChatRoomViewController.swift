@@ -34,14 +34,19 @@ class ChatRoomViewController: UIViewController {
     }()
 
     @IBOutlet weak var chatRoomTableView: UITableView!
+    @IBOutlet weak var userBlockButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let rightBarButton = UIBarButtonItem(title: "ブロック通報", style: .plain, target: self, action: #selector(tappedNavRightBarButton))
+        
+        navigationItem.rightBarButtonItem = rightBarButton
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        
         setUpNotification()
         setUpChatRoomTableView()
         fetchMessages()
-        
     }
     
     private func setUpNotification() {
@@ -61,6 +66,12 @@ class ChatRoomViewController: UIViewController {
         chatRoomTableView.scrollIndicatorInsets = tableViewIndicateInset
         chatRoomTableView.keyboardDismissMode = .interactive
         chatRoomTableView.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
+        
+    }
+    
+    @objc private func tappedNavRightBarButton(){
+        print("通報ボタンが押されました")
+        addBlockToFirestore()
         
     }
     
@@ -182,6 +193,28 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
                     print("メッセージの保存に成功しました")
                 }
         }
+        
+    }
+    
+    private func addBlockToFirestore() {
+        guard let chatroomDocId = chatroom?.documentId else { return }
+        guard let name = user?.username else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let docData = [
+            "chatroomDocId": chatroomDocId,
+            "createAt": Timestamp(),
+            "fromName": name,
+            "fromUid": uid
+            ] as [String : Any]
+
+        Firestore.firestore().collection("blockChatRooms").document().setData(docData) { (err) in
+                if let err = err {
+                    print("ブロック情報の保存に失敗しました。\(err)")
+                    return
+                }
+                print("ブロック情報の保存に成功しました。")
+      }
         
     }
     

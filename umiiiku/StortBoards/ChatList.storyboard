@@ -60,9 +60,9 @@
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiE-aY-0RG">
-                                                    <rect key="frame" x="224" y="32" width="180" height="16"/>
+                                                    <rect key="frame" x="284" y="32" width="120" height="16"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="180" id="kPa-a6-p0W"/>
+                                                        <constraint firstAttribute="width" constant="120" id="kPa-a6-p0W"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
