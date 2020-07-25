@@ -7,23 +7,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="4aF-xz-wrN">
             <objects>
                 <navigationController id="LXb-rL-fdl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="qeO-3I-0oQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="out-zI-1j2">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="QXv-fc-cfz" kind="relationship" relationship="rootViewController" id="Ya7-Mz-9zk"/>
+                        <segue destination="QXv-fc-cfz" kind="relationship" relationship="rootViewController" id="9My-jr-iPC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bDQ-Tt-hAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-565" y="117"/>
+            <point key="canvasLocation" x="1219" y="75"/>
         </scene>
-        <!--Chat List View Controller-->
+        <!--Item-->
         <scene sceneID="wYD-If-171">
             <objects>
                 <viewController storyboardIdentifier="ChatListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QXv-fc-cfz" customClass="ChatListViewController" customModule="umiiiku" customModuleProvider="target" sceneMemberID="viewController">
@@ -98,6 +99,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3FQ-lj-hRD"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="oPq-BY-UIc"/>
                     <navigationItem key="navigationItem" id="Qdo-H9-q1d"/>
                     <connections>
                         <outlet property="chatListTableView" destination="O7Z-no-2cC" id="D4X-wS-TrY"/>
@@ -105,7 +107,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mA-nf-AAv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="311.59420289855075" y="116.51785714285714"/>
+            <point key="canvasLocation" x="1936" y="75"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="DvI-r4-16i">
+            <objects>
+                <viewController id="jg7-dq-4gA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="etN-ql-1yo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xAF-zV-fz2">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tMd-s3-ydL" firstAttribute="bottom" secondItem="xAF-zV-fz2" secondAttribute="bottom" id="6Pr-B5-PpZ"/>
+                            <constraint firstItem="xAF-zV-fz2" firstAttribute="leading" secondItem="tMd-s3-ydL" secondAttribute="leading" id="NBe-ae-4t9"/>
+                            <constraint firstItem="tMd-s3-ydL" firstAttribute="trailing" secondItem="xAF-zV-fz2" secondAttribute="trailing" id="Uit-7F-c7q"/>
+                            <constraint firstItem="xAF-zV-fz2" firstAttribute="top" secondItem="tMd-s3-ydL" secondAttribute="top" id="av0-TV-yRr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tMd-s3-ydL"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="jhX-OU-94Q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0VE-tP-bgk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1220" y="790"/>
         </scene>
     </scenes>
     <resources>

@@ -65,7 +65,6 @@ class UserListViewController: UIViewController {
                         return
                     }
                     snapshots?.documents.forEach ({ (snapshot) in
-                        self.chatroomvacant = true
                         let dic = snapshot.data()
                         let user = User.init(dic: dic)
                         user.uid = snapshot.documentID
@@ -83,6 +82,7 @@ class UserListViewController: UIViewController {
                             }
                         })
                         if self.chatroomvacant { self.users.append(user) }
+                        self.chatroomvacant = true
                         self.userListTableView.reloadData()
                     })
             }

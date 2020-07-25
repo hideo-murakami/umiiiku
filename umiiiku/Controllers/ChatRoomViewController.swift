@@ -34,19 +34,24 @@ class ChatRoomViewController: UIViewController {
     }()
 
     @IBOutlet weak var chatRoomTableView: UITableView!
-    @IBOutlet weak var userBlockButton: UIBarButtonItem!
+
+    @IBAction func userBlockButton(_ sender: Any) {
+        
+        let blockChatRoomId = self.storyboard?.instantiateViewController(withIdentifier: "BlockViewController") as! BlockViewController
+        blockChatRoomId.blockChatRoomId = chatroom?.documentId ?? ""
+        
+        self.navigationController?.present(blockChatRoomId, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rightBarButton = UIBarButtonItem(title: "ブロック通報", style: .plain, target: self, action: #selector(tappedNavRightBarButton))
-        
-        navigationItem.rightBarButtonItem = rightBarButton
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        self.navigationController?.navigationBar.tintColor = .white
         
         setUpNotification()
         setUpChatRoomTableView()
         fetchMessages()
+        
     }
     
     private func setUpNotification() {
@@ -71,7 +76,6 @@ class ChatRoomViewController: UIViewController {
     
     @objc private func tappedNavRightBarButton(){
         print("通報ボタンが押されました")
-        addBlockToFirestore()
         
     }
     
@@ -127,7 +131,6 @@ class ChatRoomViewController: UIViewController {
                 case .added:
                     let dic = documentChange.document.data()
                     let message = Message(dic: dic)
-                    print("dic:", dic)
                     message.partnerUser = self.chatroom?.partnerUser
                     self.messages.append(message)
                     self.messages.sort { (m1, m2) -> Bool in
@@ -139,8 +142,7 @@ class ChatRoomViewController: UIViewController {
 //                    self.chatRoomTableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: true)
                     
                 case .modified, .removed:
-                    print("nothing to do")
-                    
+                    print("nothing to do1")
                 }
                 
             })
@@ -189,32 +191,9 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
                         return
                         
                     }
-                    
                     print("メッセージの保存に成功しました")
                 }
         }
-        
-    }
-    
-    private func addBlockToFirestore() {
-        guard let chatroomDocId = chatroom?.documentId else { return }
-        guard let name = user?.username else { return }
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        let docData = [
-            "chatroomDocId": chatroomDocId,
-            "createAt": Timestamp(),
-            "fromName": name,
-            "fromUid": uid
-            ] as [String : Any]
-
-        Firestore.firestore().collection("blockChatRooms").document().setData(docData) { (err) in
-                if let err = err {
-                    print("ブロック情報の保存に失敗しました。\(err)")
-                    return
-                }
-                print("ブロック情報の保存に成功しました。")
-      }
         
     }
     

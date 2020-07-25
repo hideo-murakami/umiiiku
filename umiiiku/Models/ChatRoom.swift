@@ -11,6 +11,7 @@ import Firebase
 
 class ChatRoom {
     
+    let blockStatus: String
     let latestMessageId: String
     let members: [String]
     let createAt: Timestamp
@@ -21,6 +22,7 @@ class ChatRoom {
     
     init(dic: [String: Any]) {
         
+        self.blockStatus = dic["blockStatus"] as? String ?? ""
         self.latestMessageId = dic["latestMessageId"] as? String ?? ""
         self.members = dic["members"] as? [String] ?? [String]()
         self.createAt = dic["createAt"] as? Timestamp ?? Timestamp()

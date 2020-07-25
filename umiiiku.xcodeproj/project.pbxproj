@@ -12,6 +12,9 @@
 		C117DC8324BC192A001A5AB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117DC8224BC192A001A5AB6 /* User.swift */; };
 		C12C6DD024C3E30A0092703D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12C6DCF24C3E30A0092703D /* LoginViewController.swift */; };
 		C14E68E524C0248E00D2C9EC /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14E68E424C0248E00D2C9EC /* ChatRoom.swift */; };
+		C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E624CA79610077FE5D /* BlockViewController.swift */; };
+		C17B47E924CBEBCD0077FE5D /* BlockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */; };
+		C17DAC3F24C67C7600049807 /* BlockChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DAC3E24C67C7600049807 /* BlockChatRoom.swift */; };
 		C1AA929024BCAF67003328E6 /* UserList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1AA928F24BCAF67003328E6 /* UserList.storyboard */; };
 		C1AA929224BCB0D7003328E6 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AA929124BCB0D7003328E6 /* UserListViewController.swift */; };
 		C1B999F624B956EE00A33D64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B999F524B956EE00A33D64 /* AppDelegate.swift */; };
@@ -65,6 +68,9 @@
 		C117DC8224BC192A001A5AB6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C12C6DCF24C3E30A0092703D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C14E68E424C0248E00D2C9EC /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		C17B47E624CA79610077FE5D /* BlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockViewController.swift; sourceTree = "<group>"; };
+		C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInfo.swift; sourceTree = "<group>"; };
+		C17DAC3E24C67C7600049807 /* BlockChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockChatRoom.swift; sourceTree = "<group>"; };
 		C1AA928F24BCAF67003328E6 /* UserList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserList.storyboard; sourceTree = "<group>"; };
 		C1AA929124BCB0D7003328E6 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		C1B999F224B956EE00A33D64 /* umiiiku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = umiiiku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +150,8 @@
 				C117DC8224BC192A001A5AB6 /* User.swift */,
 				C14E68E424C0248E00D2C9EC /* ChatRoom.swift */,
 				C1ECFBA424C2C13A00443D4C /* Message.swift */,
+				C17DAC3E24C67C7600049807 /* BlockChatRoom.swift */,
+				C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,6 +223,7 @@
 				C1C79E2124BAE71D00323E06 /* SignUpViewController.swift */,
 				C1AA929124BCB0D7003328E6 /* UserListViewController.swift */,
 				C12C6DCF24C3E30A0092703D /* LoginViewController.swift */,
+				C17B47E624CA79610077FE5D /* BlockViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -514,7 +523,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1B999F624B956EE00A33D64 /* AppDelegate.swift in Sources */,
+				C17B47E924CBEBCD0077FE5D /* BlockInfo.swift in Sources */,
+				C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */,
 				C1D3DA3424BA99E300916BB7 /* ChatInputAccessoryView.swift in Sources */,
+				C17DAC3F24C67C7600049807 /* BlockChatRoom.swift in Sources */,
 				C1C79E2224BAE71D00323E06 /* SignUpViewController.swift in Sources */,
 				C1B99A2824B959C600A33D64 /* ChatListViewController.swift in Sources */,
 				C1D3DA2924B9BCF500916BB7 /* ChatRoomViewController.swift in Sources */,

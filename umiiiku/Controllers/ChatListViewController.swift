@@ -29,15 +29,16 @@ class ChatListViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         confirmLoggedInUser()
-        fetchChatroomsInfoFromFirestore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchLoginUserInfo()
+        fetchChatroomsInfoFromFirestore()
     }
     
     func fetchChatroomsInfoFromFirestore(){
+        
         chatRoomListener?.remove()
         chatrooms.removeAll()
         chatListTableView.reloadData()
@@ -52,7 +53,7 @@ class ChatListViewController: UIViewController {
                     case .added:
                         self.handleAddedDocumentChange(documentChange: documentChange)
                     case .modified, .removed:
-                        print("nothing to do")
+                        print("nothing to do2")
                     }
                 })
         }
@@ -65,6 +66,7 @@ class ChatListViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let isContain = chatroom.members.contains(uid)
         if !isContain { return }
+        
         chatroom.members.forEach({ (memberUid) in
             if memberUid != uid {
                 Firestore.firestore().collection("users").document(memberUid).getDocument {(userSnapshot, err) in
@@ -72,13 +74,13 @@ class ChatListViewController: UIViewController {
                         print("ユーザー情報の取得に失敗しました。\(err)")
                         return
                     }
-                    print("memberUid:", memberUid)
                     guard let dic = userSnapshot?.data() else { return }
                     let user = User(dic: dic)
                     user.uid = documentChange.document.documentID
                     chatroom.partnerUser = user
                     guard let chatroomId = chatroom.documentId else { return }
                     let latestMessageId = chatroom.latestMessageId
+
                     if latestMessageId == "" {
                         self.chatrooms.append(chatroom)
                         self.chatListTableView.reloadData()
@@ -89,10 +91,11 @@ class ChatListViewController: UIViewController {
                             print("最新情報の取得に失敗しました。\(err)")
                             return
                         }
+                        
                         guard let dic = messageSnapshot?.data() else { return }
                         let message = Message(dic: dic)
                         chatroom.latestMessage = message
-                        self.chatrooms.append(chatroom)
+                        if chatroom.blockStatus != "blocked" { self.chatrooms.append(chatroom) }
                         self.chatListTableView.reloadData()
                     }
                 }
@@ -158,6 +161,8 @@ class ChatListViewController: UIViewController {
         }
     }
 }
+    
+    
 // MARK: UITableViewDelegate, UITableViewDataSource
 extension ChatListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
