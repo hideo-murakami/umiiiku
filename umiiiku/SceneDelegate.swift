@@ -14,16 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        let window = UIWindow(windowScene: scene as! UIWindowScene)
-        self.window = window
-        window.makeKeyAndVisible()
-        
-        let storyboard = UIStoryboard(name: "ChatList", bundle: nil)
-        let chatListViewController = storyboard.instantiateViewController(
-        identifier: "ChatListViewController")
-        let nav = UINavigationController(rootViewController: chatListViewController)
-        
-        window.rootViewController = nav
+//        let window = UIWindow(windowScene: scene as! UIWindowScene)
+//        self.window = window
+//        window.makeKeyAndVisible()
+//
+//        let storyboard = UIStoryboard(name: "BaseTabBar", bundle: nil)
+//        let baseTabBarController = storyboard.instantiateViewController(
+//        identifier: "BaseTabBarController")
+//        let nav = UINavigationController(rootViewController: baseTabBarController)
+//
+//        window.rootViewController = nav
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

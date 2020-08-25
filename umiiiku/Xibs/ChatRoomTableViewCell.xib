@@ -54,15 +54,23 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未読" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tY-hU-dbg">
+                        <rect key="frame" x="160.5" y="25" width="20.5" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Pqq-s3-6XP" secondAttribute="bottom" constant="25" id="2sY-ew-pOi"/>
+                    <constraint firstItem="4tY-hU-dbg" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="25" id="5VW-jj-gX9"/>
                     <constraint firstItem="PlU-hg-uBa" firstAttribute="leading" secondItem="kOK-9A-m34" secondAttribute="leading" constant="15" id="6xT-iH-dGr"/>
                     <constraint firstItem="PlU-hg-uBa" firstAttribute="centerY" secondItem="kOK-9A-m34" secondAttribute="centerY" id="MKq-hi-vuS"/>
                     <constraint firstAttribute="bottom" secondItem="Lhf-vo-Dna" secondAttribute="bottom" constant="30" id="UI5-Af-x9I"/>
                     <constraint firstItem="Pqq-s3-6XP" firstAttribute="leading" secondItem="Lhf-vo-Dna" secondAttribute="trailing" constant="8" id="Y1r-j8-zAJ"/>
                     <constraint firstAttribute="trailing" secondItem="Pqq-s3-6XP" secondAttribute="trailing" constant="20" id="ZvS-2M-L6j"/>
+                    <constraint firstItem="Pqq-s3-6XP" firstAttribute="leading" secondItem="4tY-hU-dbg" secondAttribute="trailing" constant="5" id="c1G-hT-rf4"/>
                     <constraint firstItem="rAd-jC-Kuh" firstAttribute="bottom" secondItem="2Ta-0c-ZHo" secondAttribute="bottom" constant="10" id="lo4-ko-47S"/>
                     <constraint firstItem="rAd-jC-Kuh" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="25" id="mmf-8o-9oU"/>
                     <constraint firstItem="rAd-jC-Kuh" firstAttribute="leading" secondItem="PlU-hg-uBa" secondAttribute="trailing" constant="10" id="o9B-O3-RNA"/>
@@ -75,6 +83,7 @@
             <connections>
                 <outlet property="messageTextViewWidthConstraint" destination="Sse-uM-3Gj" id="uCf-GU-SyZ"/>
                 <outlet property="myDateLabel" destination="Lhf-vo-Dna" id="5e2-HM-MfO"/>
+                <outlet property="myIsReadLabel" destination="4tY-hU-dbg" id="NfV-t0-IlC"/>
                 <outlet property="myMessageTextView" destination="Pqq-s3-6XP" id="Z7C-Jb-LPw"/>
                 <outlet property="myMessageTextViewWithConstraint" destination="lwc-Fl-EyR" id="tAs-q7-cSb"/>
                 <outlet property="partnerDateLabel" destination="2Ta-0c-ZHo" id="N2E-Zf-PsW"/>

@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		5618A95DBB34D41AF00C3533 /* Pods_umiiiku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C23D0B5CC82FB5074BE57E3 /* Pods_umiiiku.framework */; };
+		C1056A2D24F38B790085429F /* Umiiiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1056A2C24F38B790085429F /* Umiiiker.swift */; };
 		C10CE50824C3DF240002BE35 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C10CE50724C3DF240002BE35 /* Login.storyboard */; };
 		C117DC8324BC192A001A5AB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117DC8224BC192A001A5AB6 /* User.swift */; };
+		C120C24A24CD048E00BC366D /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120C24924CD048D00BC366D /* UIImage-Extension.swift */; };
 		C12C6DD024C3E30A0092703D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12C6DCF24C3E30A0092703D /* LoginViewController.swift */; };
 		C14E68E524C0248E00D2C9EC /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14E68E424C0248E00D2C9EC /* ChatRoom.swift */; };
 		C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E624CA79610077FE5D /* BlockViewController.swift */; };
 		C17B47E924CBEBCD0077FE5D /* BlockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */; };
+		C17B47F324CC29D00077FE5D /* BaseTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */; };
+		C17B47F524CC2A8B0077FE5D /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17B47F424CC2A8B0077FE5D /* MyPage.storyboard */; };
+		C17B47F724CC2B550077FE5D /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47F624CC2B550077FE5D /* MyPageViewController.swift */; };
+		C17B47F924CC2D960077FE5D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47F824CC2D960077FE5D /* BaseTabBarController.swift */; };
 		C17DAC3F24C67C7600049807 /* BlockChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DAC3E24C67C7600049807 /* BlockChatRoom.swift */; };
 		C1AA929024BCAF67003328E6 /* UserList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1AA928F24BCAF67003328E6 /* UserList.storyboard */; };
 		C1AA929224BCB0D7003328E6 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AA929124BCB0D7003328E6 /* UserListViewController.swift */; };
@@ -27,7 +33,7 @@
 		C1B99A2824B959C600A33D64 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B99A2724B959C600A33D64 /* ChatListViewController.swift */; };
 		C1C79E2024BAE29300323E06 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C79E1F24BAE29300323E06 /* SignUp.storyboard */; };
 		C1C79E2224BAE71D00323E06 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C79E2124BAE71D00323E06 /* SignUpViewController.swift */; };
-		C1D3DA2524B9B73900916BB7 /* UIColor-Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D3DA2424B9B73900916BB7 /* UIColor-Extention.swift */; };
+		C1D3DA2524B9B73900916BB7 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D3DA2424B9B73900916BB7 /* UIColor-Extension.swift */; };
 		C1D3DA2724B9BC5700916BB7 /* ChatRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1D3DA2624B9BC5700916BB7 /* ChatRoom.storyboard */; };
 		C1D3DA2924B9BCF500916BB7 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D3DA2824B9BCF500916BB7 /* ChatRoomViewController.swift */; };
 		C1D3DA2B24B9C56600916BB7 /* ChatRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D3DA2A24B9C56600916BB7 /* ChatRoomTableViewCell.xib */; };
@@ -35,6 +41,7 @@
 		C1D3DA3224BA983400916BB7 /* ChatInputAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D3DA3124BA983400916BB7 /* ChatInputAccessoryView.xib */; };
 		C1D3DA3424BA99E300916BB7 /* ChatInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D3DA3324BA99E300916BB7 /* ChatInputAccessoryView.swift */; };
 		C1D3DA3624BADD9400916BB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1D3DA3524BADD9400916BB7 /* GoogleService-Info.plist */; };
+		C1E78FEC24E711E1009C5031 /* MessageID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E78FEB24E711E1009C5031 /* MessageID.swift */; };
 		C1ECFBA524C2C13A00443D4C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ECFBA424C2C13A00443D4C /* Message.swift */; };
 		CF82E2E72A011F91E676E782 /* Pods_umiiikuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8C21B019ECE7B65C9096A /* Pods_umiiikuTests.framework */; };
 		E64DB5533997B6EE6FBD6291 /* Pods_umiiiku_umiiikuUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0680C910FF7E69329BDFC799 /* Pods_umiiiku_umiiikuUITests.framework */; };
@@ -64,12 +71,19 @@
 		7AEF90DB57F71EA0ABF8D6C3 /* Pods-umiiikuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-umiiikuTests.release.xcconfig"; path = "Target Support Files/Pods-umiiikuTests/Pods-umiiikuTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B13687DA684A5C30C0D3E13 /* Pods-umiiiku-umiiikuUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-umiiiku-umiiikuUITests.debug.xcconfig"; path = "Target Support Files/Pods-umiiiku-umiiikuUITests/Pods-umiiiku-umiiikuUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C23D0B5CC82FB5074BE57E3 /* Pods_umiiiku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_umiiiku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1056A2C24F38B790085429F /* Umiiiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Umiiiker.swift; sourceTree = "<group>"; };
 		C10CE50724C3DF240002BE35 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C117DC8224BC192A001A5AB6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C120C24924CD048D00BC366D /* UIImage-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
 		C12C6DCF24C3E30A0092703D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C14E68E424C0248E00D2C9EC /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		C1733ECB24DEF7E200CC6254 /* umiiiku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = umiiiku.entitlements; sourceTree = "<group>"; };
 		C17B47E624CA79610077FE5D /* BlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockViewController.swift; sourceTree = "<group>"; };
 		C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInfo.swift; sourceTree = "<group>"; };
+		C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseTabBar.storyboard; sourceTree = "<group>"; };
+		C17B47F424CC2A8B0077FE5D /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		C17B47F624CC2B550077FE5D /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		C17B47F824CC2D960077FE5D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		C17DAC3E24C67C7600049807 /* BlockChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockChatRoom.swift; sourceTree = "<group>"; };
 		C1AA928F24BCAF67003328E6 /* UserList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserList.storyboard; sourceTree = "<group>"; };
 		C1AA929124BCB0D7003328E6 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +103,7 @@
 		C1B99A2724B959C600A33D64 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		C1C79E1F24BAE29300323E06 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		C1C79E2124BAE71D00323E06 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		C1D3DA2424B9B73900916BB7 /* UIColor-Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extention.swift"; sourceTree = "<group>"; };
+		C1D3DA2424B9B73900916BB7 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		C1D3DA2624B9BC5700916BB7 /* ChatRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoom.storyboard; sourceTree = "<group>"; };
 		C1D3DA2824B9BCF500916BB7 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		C1D3DA2A24B9C56600916BB7 /* ChatRoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRoomTableViewCell.xib; sourceTree = "<group>"; };
@@ -97,6 +111,7 @@
 		C1D3DA3124BA983400916BB7 /* ChatInputAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatInputAccessoryView.xib; sourceTree = "<group>"; };
 		C1D3DA3324BA99E300916BB7 /* ChatInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputAccessoryView.swift; sourceTree = "<group>"; };
 		C1D3DA3524BADD9400916BB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C1E78FEB24E711E1009C5031 /* MessageID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageID.swift; sourceTree = "<group>"; };
 		C1ECFBA424C2C13A00443D4C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C3DB6B4C0B30548E14162AFC /* Pods-umiiiku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-umiiiku.release.xcconfig"; path = "Target Support Files/Pods-umiiiku/Pods-umiiiku.release.xcconfig"; sourceTree = "<group>"; };
 		EAE4EEB403F5C41CE3557245 /* Pods-umiiiku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-umiiiku.debug.xcconfig"; path = "Target Support Files/Pods-umiiiku/Pods-umiiiku.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,8 +163,10 @@
 			isa = PBXGroup;
 			children = (
 				C117DC8224BC192A001A5AB6 /* User.swift */,
+				C1056A2C24F38B790085429F /* Umiiiker.swift */,
 				C14E68E424C0248E00D2C9EC /* ChatRoom.swift */,
 				C1ECFBA424C2C13A00443D4C /* Message.swift */,
+				C1E78FEB24E711E1009C5031 /* MessageID.swift */,
 				C17DAC3E24C67C7600049807 /* BlockChatRoom.swift */,
 				C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */,
 			);
@@ -181,6 +198,7 @@
 		C1B999F424B956EE00A33D64 /* umiiiku */ = {
 			isa = PBXGroup;
 			children = (
+				C1733ECB24DEF7E200CC6254 /* umiiiku.entitlements */,
 				C117DC8124BC1911001A5AB6 /* Models */,
 				C1D3DA3024BA97EF00916BB7 /* Extentions */,
 				C1D3DA2F24BA97D500916BB7 /* Views */,
@@ -224,6 +242,8 @@
 				C1AA929124BCB0D7003328E6 /* UserListViewController.swift */,
 				C12C6DCF24C3E30A0092703D /* LoginViewController.swift */,
 				C17B47E624CA79610077FE5D /* BlockViewController.swift */,
+				C17B47F624CC2B550077FE5D /* MyPageViewController.swift */,
+				C17B47F824CC2D960077FE5D /* BaseTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -236,6 +256,8 @@
 				C1C79E1F24BAE29300323E06 /* SignUp.storyboard */,
 				C1AA928F24BCAF67003328E6 /* UserList.storyboard */,
 				C10CE50724C3DF240002BE35 /* Login.storyboard */,
+				C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */,
+				C17B47F424CC2A8B0077FE5D /* MyPage.storyboard */,
 			);
 			path = StortBoards;
 			sourceTree = "<group>";
@@ -261,7 +283,8 @@
 		C1D3DA3024BA97EF00916BB7 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				C1D3DA2424B9B73900916BB7 /* UIColor-Extention.swift */,
+				C1D3DA2424B9B73900916BB7 /* UIColor-Extension.swift */,
+				C120C24924CD048D00BC366D /* UIImage-Extension.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -391,6 +414,8 @@
 				C1B999FF24B956F300A33D64 /* Assets.xcassets in Resources */,
 				C1B99A2624B9585200A33D64 /* ChatList.storyboard in Resources */,
 				C1D3DA3224BA983400916BB7 /* ChatInputAccessoryView.xib in Resources */,
+				C17B47F324CC29D00077FE5D /* BaseTabBar.storyboard in Resources */,
+				C17B47F524CC2A8B0077FE5D /* MyPage.storyboard in Resources */,
 				C1D3DA2724B9BC5700916BB7 /* ChatRoom.storyboard in Resources */,
 				C1C79E2024BAE29300323E06 /* SignUp.storyboard in Resources */,
 				C10CE50824C3DF240002BE35 /* Login.storyboard in Resources */,
@@ -524,19 +549,24 @@
 			files = (
 				C1B999F624B956EE00A33D64 /* AppDelegate.swift in Sources */,
 				C17B47E924CBEBCD0077FE5D /* BlockInfo.swift in Sources */,
+				C17B47F924CC2D960077FE5D /* BaseTabBarController.swift in Sources */,
 				C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */,
 				C1D3DA3424BA99E300916BB7 /* ChatInputAccessoryView.swift in Sources */,
 				C17DAC3F24C67C7600049807 /* BlockChatRoom.swift in Sources */,
 				C1C79E2224BAE71D00323E06 /* SignUpViewController.swift in Sources */,
 				C1B99A2824B959C600A33D64 /* ChatListViewController.swift in Sources */,
+				C1E78FEC24E711E1009C5031 /* MessageID.swift in Sources */,
 				C1D3DA2924B9BCF500916BB7 /* ChatRoomViewController.swift in Sources */,
 				C1AA929224BCB0D7003328E6 /* UserListViewController.swift in Sources */,
 				C117DC8324BC192A001A5AB6 /* User.swift in Sources */,
-				C1D3DA2524B9B73900916BB7 /* UIColor-Extention.swift in Sources */,
+				C17B47F724CC2B550077FE5D /* MyPageViewController.swift in Sources */,
+				C120C24A24CD048E00BC366D /* UIImage-Extension.swift in Sources */,
+				C1D3DA2524B9B73900916BB7 /* UIColor-Extension.swift in Sources */,
 				C1D3DA2D24B9C7EC00916BB7 /* ChatRoomTableViewCell.swift in Sources */,
 				C1ECFBA524C2C13A00443D4C /* Message.swift in Sources */,
 				C1B999F824B956EE00A33D64 /* SceneDelegate.swift in Sources */,
 				C12C6DD024C3E30A0092703D /* LoginViewController.swift in Sources */,
+				C1056A2D24F38B790085429F /* Umiiiker.swift in Sources */,
 				C14E68E524C0248E00D2C9EC /* ChatRoom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,7 +733,9 @@
 			baseConfigurationReference = EAE4EEB403F5C41CE3557245 /* Pods-umiiiku.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = umiiiku/umiiiku.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2F345FGHJG;
 				INFOPLIST_FILE = umiiiku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -712,6 +744,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.hidesigns.umiiiku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = umiiiku;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -722,7 +755,9 @@
 			baseConfigurationReference = C3DB6B4C0B30548E14162AFC /* Pods-umiiiku.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = umiiiku/umiiiku.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2F345FGHJG;
 				INFOPLIST_FILE = umiiiku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -731,6 +766,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.hidesigns.umiiiku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = umiiiku;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

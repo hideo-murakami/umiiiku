@@ -16,6 +16,7 @@ class User{
     let username: String
     let createAt: Timestamp
     let profileImageUrl: String
+    let token: String
     
     var uid: String?
     
@@ -24,6 +25,7 @@ class User{
         self.username = dic["username"] as? String ?? ""
         self.createAt = dic["createAt"] as? Timestamp ?? Timestamp()
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
+        self.token = dic["token"] as? String ?? ""
         
     }
     

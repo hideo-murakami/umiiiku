@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 import Nuke
-import FirebaseFirestore
 
 class UserListViewController: UIViewController {
+    
+    var umiiikerId: String = ""
+    
     private let cellId = "cellId"
     private var users = [User]()
     private var selectedUser: User?
@@ -36,7 +38,9 @@ class UserListViewController: UIViewController {
         print("tappedStartChatButton")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let partnerUid = self.selectedUser?.uid else { return }
-        let members = [uid, partnerUid]
+        var members = [uid, partnerUid]
+        members.append(self.umiiikerId)
+        
         let docData = [
             "members": members,
             "latestMessageId": "",
@@ -48,7 +52,17 @@ class UserListViewController: UIViewController {
                 return
             }
             self.dismiss(animated: true, completion: nil)
-            print("ChatRooms情報の保存に成功しました。")
+            print("ChatRooms情報の保存に成功しました。", docData)
+            
+            Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+                if let err = err {
+                    print("ユーザー情報の取得に失敗しました。\(err)")
+                    return
+                }
+                guard let snapshot = snapshot, let dic = snapshot.data() else { return }
+                let user = User(dic: dic)
+                print("token",user.token)
+            }
         }
     }
     
@@ -69,17 +83,15 @@ class UserListViewController: UIViewController {
                         let user = User.init(dic: dic)
                         user.uid = snapshot.documentID
                         guard let uid = Auth.auth().currentUser?.uid else { return }
-                        if uid == snapshot.documentID {
+                        if uid == snapshot.documentID || self.umiiikerId == snapshot.documentID {
                             return
                         }
                         snapshots2?.documents.forEach ( { (snapshot2) in
                             let dic2 = snapshot2.data()
                             let chatroom = ChatRoom(dic: dic2)
-                            if (user.uid == chatroom.members[0] || user.uid == chatroom.members[1]) &&
-                               (uid == chatroom.members[0] || uid == chatroom.members[1])  {
-                                print("既にチャットルームがあります")
-                                self.chatroomvacant = false
-                            }
+                            let isContain = chatroom.members.contains(user.uid ?? "")
+                            if isContain { self.chatroomvacant = false }
+                            
                         })
                         if self.chatroomvacant { self.users.append(user) }
                         self.chatroomvacant = true
@@ -87,9 +99,6 @@ class UserListViewController: UIViewController {
                     })
             }
         }
-    }
-    
-    func fetchChatroomsInfoFromFirestore(uid: String){
     }
     
 }

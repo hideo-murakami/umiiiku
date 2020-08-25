@@ -49,6 +49,7 @@ class BlockViewController: UIViewController {
         spamBlockButton.addTarget(self, action: #selector(tappedspamBlockButton), for: .touchUpInside)
         anotherBlockButton.addTarget(self, action: #selector(tappedanotherBlockButton), for: .touchUpInside)
         
+        blockReasonTextField.delegate = self
         
         closeBlockViewButton.addTarget(self, action: #selector(tappedCloseBlockViewButton), for: .touchUpInside)
         
@@ -160,10 +161,18 @@ class BlockViewController: UIViewController {
             }
             print("ブロックステータスの変更に成功しました")
             
-            let storyboard = UIStoryboard.init(name: "ChatList", bundle: nil)
-            let chatListViewController = storyboard.instantiateViewController(withIdentifier: "ChatListViewController")
-            let nav = UINavigationController(rootViewController: chatListViewController)
-            self.present(nav, animated: true, completion: nil)
+//            let storyboard = UIStoryboard.init(name: "ChatList", bundle: nil)
+//            let chatListViewController = storyboard.instantiateViewController(withIdentifier: "ChatListViewController")
+//            let nav = UINavigationController(rootViewController: chatListViewController)
+//            self.present(nav, animated: true, completion: nil)
+            
+//            let vc = ChatListViewController()
+//            let rootVC = UIApplication.shared.windows.first?.rootViewController as? UITabBarController
+//            let navigationController = rootVC?.children[0] as? UINavigationController
+//            rootVC?.selectedIndex = 0
+//            navigationController?.pushViewController(vc, animated: false)
+            
+            self.dismiss(animated: true, completion: nil)
             
         }
         
@@ -183,6 +192,11 @@ extension BlockViewController: UITextFieldDelegate {
             anotherBlockButton.isEnabled = true
             anotherBlockButton.backgroundColor = .rgb(red: 0, green: 185, blue: 0)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

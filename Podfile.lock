@@ -212,6 +212,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - BadgeHub (0.1.1)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -231,6 +232,9 @@ PODS:
   - Firebase/Firestore (6.27.1):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.16.0)
+  - Firebase/Messaging (6.27.1):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.5.0)
   - Firebase/Storage (6.27.1):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.7.0)
@@ -274,6 +278,19 @@ PODS:
     - GoogleUtilities/Environment (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.6)
     - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.4.0):
+    - FirebaseCore (~> 6.8)
+    - FirebaseInstallations (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+  - FirebaseMessaging (4.5.0):
+    - FirebaseCore (~> 6.8)
+    - FirebaseInstanceID (~> 4.3)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Reachability (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - Protobuf (>= 3.9.2, ~> 3.9)
   - FirebaseStorage (3.7.0):
     - FirebaseCore (~> 6.8)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -340,11 +357,14 @@ PODS:
   - Nuke (9.1.1)
   - PKHUD (5.3.0)
   - PromisesObjC (1.2.9)
+  - Protobuf (3.12.0)
 
 DEPENDENCIES:
+  - BadgeHub
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Firestore
+  - Firebase/Messaging
   - Firebase/Storage
   - Nuke
   - PKHUD
@@ -352,6 +372,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - abseil
+    - BadgeHub
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -360,6 +381,8 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -373,9 +396,11 @@ SPEC REPOS:
     - Nuke
     - PKHUD
     - PromisesObjC
+    - Protobuf
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
+  BadgeHub: 8632dc9ab9cfb1bee903ebd40f9de77d29323dc7
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Firebase: 919186c8e119dd9372a45fd1dd17a8a942bc1892
   FirebaseAnalytics: 5fa308e1b13f838d0f6dc74719ac2a72e8c5afc4
@@ -384,6 +409,8 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 4505e4d4009b1d93f605088ee7d7764d5f0d1c84
   FirebaseFirestore: 4291ab811ad323a2b807a4a481cd5df2e445a676
   FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
+  FirebaseInstanceID: 3b119bfe90e904851218159c9a4ecb847cc51d18
+  FirebaseMessaging: ad9e1a80ea64905e01a0ce1b3eb76a2944544151
   FirebaseStorage: af7bdbd12177cf567df00904e3e3a93704f25b15
   GoogleAppMeasurement: 8cd1f289d60e629cf16ab03363b9e89c776b9651
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
@@ -397,7 +424,8 @@ SPEC CHECKSUMS:
   Nuke: af4301b154d3afd8a3b045a5194a9a773a00b7a8
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
+  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
 
-PODFILE CHECKSUM: 7fc371de5294af351b0c399f5292ed9954b5d5b2
+PODFILE CHECKSUM: c568c474459600cd90628377f42429a0ff71fc14
 
 COCOAPODS: 1.9.3

@@ -19,6 +19,8 @@ class ChatRoom {
     var latestMessage : Message?
     var documentId : String?
     var partnerUser : User?
+    var partnerUser1 : User?
+    var unReadCount: Int = 0
     
     init(dic: [String: Any]) {
         

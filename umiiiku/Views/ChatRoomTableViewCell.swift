@@ -12,20 +12,18 @@ import Nuke
 
 class ChatRoomTableViewCell: UITableViewCell{
     
+    var chatroomDocId : String = ""
+    
     var message: Message? {
-    didSet {
-        
-//        if let message = message{
-//            partnerMessageTextView.text = message.message
-//            let width = estimateFrameForTextView(text: message.message).width + 20
-//            messageTextViewWidthConstraint.constant = width
-//
-//            PartnerDateLabel.text = dataFormatterForDateLable(date: message.createdAt.dateValue())
-//            userImageView.image =
-//        }
-        
+        didSet {
+
         }
-        
+    }
+    
+    var messageID: MessageID? {
+        didSet {
+
+        }
     }
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -34,9 +32,8 @@ class ChatRoomTableViewCell: UITableViewCell{
     @IBOutlet weak var messageTextViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var myMessageTextView: UITextView!
     @IBOutlet weak var myDateLabel: UILabel!
+    @IBOutlet weak var myIsReadLabel: UILabel!
     @IBOutlet weak var myMessageTextViewWithConstraint: NSLayoutConstraint!
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +42,7 @@ class ChatRoomTableViewCell: UITableViewCell{
         userImageView.layer.cornerRadius = 30
         partnerMessageTextView.layer.cornerRadius = 15
         myMessageTextView.layer.cornerRadius = 15
+        
         
     }
     
@@ -63,12 +61,24 @@ class ChatRoomTableViewCell: UITableViewCell{
             
             myMessageTextView.isHidden = false
             myDateLabel.isHidden = false
+            myIsReadLabel.isHidden = false
+            
+            Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").document(messageID?.messageID ?? "").getDocument { (messageSnapshot, err)  in
+                if let err = err {
+                    print("既読情報取得に失敗しました。\(err)")
+                    return
+                }
+                guard let dic = messageSnapshot?.data() else { return }
+                let message = Message(dic: dic)
+                if message.isRead == true { self.myIsReadLabel.text = "既読" } else {
+                    self.myIsReadLabel.text = "未読"
+                }
+            }
             
             if let message = message{
                 myMessageTextView.text = message.message
-                let width = estimateFrameForTextView(text: message.message).width + 20
+                let width = estimateFrameForTextView(text: message.message).width + 25
                 myMessageTextViewWithConstraint.constant = width
-                
                 myDateLabel.text = dataFormatterForDateLable(date: message.createAt.dateValue())
             }
             
@@ -79,19 +89,18 @@ class ChatRoomTableViewCell: UITableViewCell{
             
             myMessageTextView.isHidden = true
             myDateLabel.isHidden = true
+            myIsReadLabel.isHidden = true
             
-            if let urlString = message?.partnerUser?.profileImageUrl, let url = URL(string: urlString) {
+            if let urlString = message?.profileImageUrl, let url = URL(string: urlString) {
                 Nuke.loadImage(with: url, into: userImageView)
             }
-            
+                
             if let message = message{
                 partnerMessageTextView.text = message.message
                 let width = estimateFrameForTextView(text: message.message).width + 20
                 messageTextViewWidthConstraint.constant = width
-                
                 partnerDateLabel.text = dataFormatterForDateLable(date: message.createAt.dateValue())
             }
-            
         }
         
         
