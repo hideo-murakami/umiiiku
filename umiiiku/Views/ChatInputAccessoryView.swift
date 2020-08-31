@@ -12,12 +12,11 @@ protocol ChatInputAccessoryViewDelegate: class {
     func tappedSendButton(text: String)
 }
 
-class ChatInputAccessoryView: UIView {
+class ChatInputAccessoryView: UIView, UITextFieldDelegate {
     
     @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
     @IBAction func tappedSendButton(_ sender: Any) {
-        
         guard let text = chatTextView.text else {return}
         delegate?.tappedSendButton(text: text)
     }
@@ -38,6 +37,8 @@ class ChatInputAccessoryView: UIView {
         chatTextView.layer.borderColor = UIColor.rgb(red: 230, green: 230, blue: 230).cgColor
         chatTextView.layer.borderWidth = 1
         
+        chatTextView.textContainer.lineFragmentPadding = 15
+        
         sendButton.layer.cornerRadius = 155
         sendButton.inputView?.contentMode = .scaleAspectFill
         sendButton.contentHorizontalAlignment = .fill
@@ -46,7 +47,6 @@ class ChatInputAccessoryView: UIView {
         
         chatTextView.text = ""
         chatTextView.delegate = self
-        
         
     }
     
@@ -64,8 +64,8 @@ class ChatInputAccessoryView: UIView {
     private func nibInit() {
     
     let nib = UINib(nibName: "ChatInputAccessoryView", bundle: nil)
-        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
         
+        guard let view = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.addSubview(view)

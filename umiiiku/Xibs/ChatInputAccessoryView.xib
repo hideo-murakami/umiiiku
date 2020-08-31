@@ -22,7 +22,7 @@
                     <rect key="frame" x="10" y="10" width="658" height="123"/>
                     <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myd-5F-F2F">
@@ -41,8 +41,8 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hgB-6m-hgN" secondAttribute="bottom" constant="10" id="8Md-if-oQV"/>
                 <constraint firstItem="myd-5F-F2F" firstAttribute="leading" secondItem="hgB-6m-hgN" secondAttribute="trailing" constant="10" id="9qU-cd-2uc"/>
-                <constraint firstItem="hgB-6m-hgN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="BlG-Fv-JmF"/>
                 <constraint firstItem="hgB-6m-hgN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="PD4-O9-t1H"/>
+                <constraint firstItem="hgB-6m-hgN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="f6b-uL-c1D"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="myd-5F-F2F" secondAttribute="trailing" constant="10" id="vvN-ag-IKe"/>
                 <constraint firstItem="myd-5F-F2F" firstAttribute="centerY" secondItem="hgB-6m-hgN" secondAttribute="centerY" id="wuM-dW-a98"/>
             </constraints>

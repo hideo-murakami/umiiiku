@@ -129,6 +129,7 @@ class ChatListViewController: UIViewController{
                 let user = User(dic: dic)
                 chatroom.partnerUser1 = user
             }
+        self.getLatestMessage(chatroom: chatroom)
         }
         else {
             chatroom.members.forEach({ (memberUid) in
@@ -157,8 +158,9 @@ class ChatListViewController: UIViewController{
                     
                 }
             })
-        }
         self.getLatestMessage(chatroom: chatroom)
+        }
+        
     }
     
     private func getLatestMessage(chatroom: ChatRoom) {
@@ -219,7 +221,7 @@ class ChatListViewController: UIViewController{
     private func dataFormatterForDateLable(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
-        formatter.timeStyle = .short
+        formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter.string(from: date)
     }
@@ -333,7 +335,7 @@ class ChatListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         userImageView.layer.cornerRadius = 30
-        user2ImageView.layer.cornerRadius = 20
+        user2ImageView.layer.cornerRadius = 15
         unReadCountLabel.layer.cornerRadius = 10
         unReadCountLabel.clipsToBounds = true
     }
@@ -351,14 +353,15 @@ class ChatListTableViewCell: UITableViewCell {
                             self.getUnReadCount(chatroom: chatroom,membersID: PartnerID)
                         }
                     }
+                    
+                    latestMessageLabel.text = chatroom.latestMessage?.message
                     partnerLabel.text = chatroom.partnerUser?.username
                     getProfileImageUrl(uid:uid, chatroom:chatroom)
-                    latestMessageLabel.text = chatroom.latestMessage?.message
+                    
                     dateLabel.text = dataFormatterForDateLable(date: chatroom.latestMessage?.createAt.dateValue() ?? Date())
                 }
             }
         }
-    
     
     private func getProfileImageUrl(uid: String,chatroom: ChatRoom){
         

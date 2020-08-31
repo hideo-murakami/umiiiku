@@ -13,10 +13,11 @@ import Nuke
 class ChatRoomTableViewCell: UITableViewCell{
     
     var chatroomDocId : String = ""
+    var reload: Bool = false
     
     var message: Message? {
         didSet {
-
+            self.reload = true;
         }
     }
     
@@ -30,10 +31,13 @@ class ChatRoomTableViewCell: UITableViewCell{
     @IBOutlet weak var partnerMessageTextView: UITextView!
     @IBOutlet weak var partnerDateLabel: UILabel!
     @IBOutlet weak var messageTextViewWidthConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var myMessageTextView: UITextView!
     @IBOutlet weak var myDateLabel: UILabel!
     @IBOutlet weak var myIsReadLabel: UILabel!
     @IBOutlet weak var myMessageTextViewWithConstraint: NSLayoutConstraint!
+    @IBOutlet weak var partnerMessageTextViewWithConstraint: NSLayoutConstraint!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,17 +46,19 @@ class ChatRoomTableViewCell: UITableViewCell{
         userImageView.layer.cornerRadius = 30
         partnerMessageTextView.layer.cornerRadius = 15
         myMessageTextView.layer.cornerRadius = 15
-        
+        myMessageTextView.textColor = UIColor.black
         
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        checkWhichUserMessage()
+        if self.reload {checkWhichUserMessage()}
+        self.reload = false;
     }
     
     private func checkWhichUserMessage() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        print("メッセージget2")
         
         if uid == message?.uid {
             partnerMessageTextView.isHidden = true
@@ -77,8 +83,8 @@ class ChatRoomTableViewCell: UITableViewCell{
             
             if let message = message{
                 myMessageTextView.text = message.message
-                let width = estimateFrameForTextView(text: message.message).width + 25
-                myMessageTextViewWithConstraint.constant = width
+                let width = estimateFrameForTextView(text: message.message).width + 20
+                myMessageTextViewWithConstraint.constant = CGFloat(width)
                 myDateLabel.text = dataFormatterForDateLable(date: message.createAt.dateValue())
             }
             
@@ -98,7 +104,7 @@ class ChatRoomTableViewCell: UITableViewCell{
             if let message = message{
                 partnerMessageTextView.text = message.message
                 let width = estimateFrameForTextView(text: message.message).width + 20
-                messageTextViewWidthConstraint.constant = width
+                partnerMessageTextViewWithConstraint.constant = CGFloat(width)
                 partnerDateLabel.text = dataFormatterForDateLable(date: message.createAt.dateValue())
             }
         }
@@ -112,7 +118,9 @@ class ChatRoomTableViewCell: UITableViewCell{
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         
         return NSString(string: text).boundingRect(with: size, options: options, attributes:
-            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)    }
+            [NSAttributedString.Key.font: UIFont(name: "HiraginoSans-W3", size: 14) ?? 0], context: nil)    }
+//            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)    }
+    
     
     private func dataFormatterForDateLable(date: Date) -> String {
         let formatter = DateFormatter()

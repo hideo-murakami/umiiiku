@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5618A95DBB34D41AF00C3533 /* Pods_umiiiku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C23D0B5CC82FB5074BE57E3 /* Pods_umiiiku.framework */; };
 		C1056A2D24F38B790085429F /* Umiiiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1056A2C24F38B790085429F /* Umiiiker.swift */; };
+		C1056A2F24FA33A10085429F /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1056A2E24FA33A10085429F /* UITextField-Extension.swift */; };
 		C10CE50824C3DF240002BE35 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C10CE50724C3DF240002BE35 /* Login.storyboard */; };
 		C117DC8324BC192A001A5AB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117DC8224BC192A001A5AB6 /* User.swift */; };
 		C120C24A24CD048E00BC366D /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120C24924CD048D00BC366D /* UIImage-Extension.swift */; };
@@ -72,6 +73,7 @@
 		8B13687DA684A5C30C0D3E13 /* Pods-umiiiku-umiiikuUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-umiiiku-umiiikuUITests.debug.xcconfig"; path = "Target Support Files/Pods-umiiiku-umiiikuUITests/Pods-umiiiku-umiiikuUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C23D0B5CC82FB5074BE57E3 /* Pods_umiiiku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_umiiiku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1056A2C24F38B790085429F /* Umiiiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Umiiiker.swift; sourceTree = "<group>"; };
+		C1056A2E24FA33A10085429F /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
 		C10CE50724C3DF240002BE35 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C117DC8224BC192A001A5AB6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C120C24924CD048D00BC366D /* UIImage-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
@@ -208,7 +210,6 @@
 				C1B999F524B956EE00A33D64 /* AppDelegate.swift */,
 				C1B999F724B956EE00A33D64 /* SceneDelegate.swift */,
 				C1B999FE24B956F300A33D64 /* Assets.xcassets */,
-				C1B99A0024B956F300A33D64 /* LaunchScreen.storyboard */,
 				C1D3DA3524BADD9400916BB7 /* GoogleService-Info.plist */,
 				C1B99A0324B956F300A33D64 /* Info.plist */,
 			);
@@ -258,6 +259,7 @@
 				C10CE50724C3DF240002BE35 /* Login.storyboard */,
 				C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */,
 				C17B47F424CC2A8B0077FE5D /* MyPage.storyboard */,
+				C1B99A0024B956F300A33D64 /* LaunchScreen.storyboard */,
 			);
 			path = StortBoards;
 			sourceTree = "<group>";
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				C1D3DA2424B9B73900916BB7 /* UIColor-Extension.swift */,
+				C1056A2E24FA33A10085429F /* UITextField-Extension.swift */,
 				C120C24924CD048D00BC366D /* UIImage-Extension.swift */,
 			);
 			path = Extentions;
@@ -552,6 +555,7 @@
 				C17B47F924CC2D960077FE5D /* BaseTabBarController.swift in Sources */,
 				C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */,
 				C1D3DA3424BA99E300916BB7 /* ChatInputAccessoryView.swift in Sources */,
+				C1056A2F24FA33A10085429F /* UITextField-Extension.swift in Sources */,
 				C17DAC3F24C67C7600049807 /* BlockChatRoom.swift in Sources */,
 				C1C79E2224BAE71D00323E06 /* SignUpViewController.swift in Sources */,
 				C1B99A2824B959C600A33D64 /* ChatListViewController.swift in Sources */,

@@ -38,7 +38,6 @@ class ChatRoomViewController: UIViewController {
     }
     
     private lazy var chatInputAccessoryView: ChatInputAccessoryView = {
-    
     let view = ChatInputAccessoryView()
         view.frame = .init(x: 0, y: 0, width: view.frame.width, height: 100)
         view.delegate = self
@@ -87,7 +86,13 @@ class ChatRoomViewController: UIViewController {
         chatRoomTableView.delegate = self
         chatRoomTableView.dataSource = self
         chatRoomTableView.register(UINib(nibName: "ChatRoomTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
-        chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
+        if (UITraitCollection.current.userInterfaceStyle == .dark) {
+            /* ダークモード時の処理 */
+            chatRoomTableView.backgroundColor = .rgb(red: 35, green: 35, blue: 35)
+        } else {
+            /* ライトモード時の処理 */
+            chatRoomTableView.backgroundColor = .rgb(red: 118, green: 140, blue: 180)
+        }
         chatRoomTableView.contentInset = tableViewContentInset
         chatRoomTableView.scrollIndicatorInsets = tableViewIndicateInset
         chatRoomTableView.keyboardDismissMode = .interactive
@@ -134,6 +139,7 @@ class ChatRoomViewController: UIViewController {
     private func fetchMessages() {
         
         messages.removeAll()
+        messageIDs.removeAll()
 
         if let chatroomDocId = chatroom?.documentId {
             listenForMessages(chatroomDocId: chatroomDocId)
@@ -154,6 +160,8 @@ class ChatRoomViewController: UIViewController {
                 
                 let dic = documentChange.document.data()
                 let messageDocumentID = documentChange.document.documentID
+                
+                print("メッセージget")
                 
                 let message = Message(dic: dic)
                 let docData = [
@@ -203,6 +211,7 @@ class ChatRoomViewController: UIViewController {
                     
                 case .modified, .removed:
                     self.chatRoomTableView.reloadData()
+                    print("none action")
                 }
             })
         }
@@ -277,22 +286,23 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        chatRoomTableView.estimatedRowHeight = 20
+        chatRoomTableView.estimatedRowHeight = 1
         return UITableView.automaticDimension
     }
     
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-    print("トーク回数：", messages.count)
-    let number = Double(messages.count)
-    if number != 0 { dNumber = number.truncatingRemainder(dividingBy: 100) }
-    print("100で割ったあまり：", dNumber)
+//    print("トーク回数：", messages.count)
+//    let number = Double(messages.count)
+//    if number != 0 { dNumber = number.truncatingRemainder(dividingBy: 100) }
+//    print("100で割ったあまり：", dNumber)
     
     if dNumber == 0 {
         let blockChatRoomId = self.storyboard?.instantiateViewController(withIdentifier: "BlockViewController") as! BlockViewController
         blockChatRoomId.blockChatRoomId = chatroom?.documentId ?? ""
         self.navigationController?.present(blockChatRoomId, animated: true)
     }
+    print("messages.count",messages.count)
     return messages.count
 }
 
@@ -300,6 +310,8 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId,for:indexPath) as! ChatRoomTableViewCell
     cell.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
     cell.message = messages[indexPath.row]
+    print("indexPath.row",indexPath.row)
+    print("messages[indexPath.row]",messages[indexPath.row])
     cell.chatroomDocId = (chatroom?.documentId! ?? "") as String
     cell.messageID = messageIDs[indexPath.row]
     return cell

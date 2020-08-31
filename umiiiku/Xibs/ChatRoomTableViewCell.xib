@@ -8,54 +8,54 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ChatRoomTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="82" id="3cQ-zq-ens" customClass="ChatRoomTableViewCell" customModule="umiiiku" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ChatRoomTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="81" id="3cQ-zq-ens" customClass="ChatRoomTableViewCell" customModule="umiiiku" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="426" height="81"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3cQ-zq-ens" id="kOK-9A-m34">
-                <rect key="frame" x="0.0" y="0.0" width="431" height="82"/>
+                <rect key="frame" x="0.0" y="0.0" width="426" height="81"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="umiiiker" translatesAutoresizingMaskIntoConstraints="NO" id="PlU-hg-uBa">
-                        <rect key="frame" x="15" y="11" width="60" height="60"/>
+                        <rect key="frame" x="15" y="10.5" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="PlU-hg-uBa" secondAttribute="height" multiplier="1:1" id="2P5-aW-tVj"/>
                             <constraint firstAttribute="width" constant="60" id="uWL-du-BmP"/>
                         </constraints>
                     </imageView>
                     <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="メッセージがここに入ります。" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAd-jC-Kuh">
-                        <rect key="frame" x="85" y="25" width="240" height="32"/>
+                        <rect key="frame" x="85" y="15" width="240" height="29"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="240" id="Sse-uM-3Gj"/>
                         </constraints>
                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ta-0c-ZHo" userLabel="partnerDateLabel">
-                        <rect key="frame" x="330" y="30" width="36.5" height="17"/>
+                        <rect key="frame" x="330" y="15" width="36.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqq-s3-6XP">
-                        <rect key="frame" x="186" y="25" width="225" height="32"/>
+                    <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqq-s3-6XP">
+                        <rect key="frame" x="181" y="15" width="225" height="29"/>
                         <color key="backgroundColor" red="0.60392156862745094" green="0.8784313725490196" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="225" id="lwc-Fl-EyR"/>
                         </constraints>
                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lhf-vo-Dna" userLabel="myDateLabel">
-                        <rect key="frame" x="141.5" y="35" width="36.5" height="17"/>
+                        <rect key="frame" x="139" y="15" width="37" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未読" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tY-hU-dbg">
-                        <rect key="frame" x="160.5" y="25" width="20.5" height="12"/>
+                        <rect key="frame" x="155.5" y="31" width="20.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -63,19 +63,19 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Pqq-s3-6XP" secondAttribute="bottom" constant="25" id="2sY-ew-pOi"/>
-                    <constraint firstItem="4tY-hU-dbg" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="25" id="5VW-jj-gX9"/>
+                    <constraint firstAttribute="bottom" secondItem="Pqq-s3-6XP" secondAttribute="bottom" constant="37" id="2sY-ew-pOi"/>
                     <constraint firstItem="PlU-hg-uBa" firstAttribute="leading" secondItem="kOK-9A-m34" secondAttribute="leading" constant="15" id="6xT-iH-dGr"/>
                     <constraint firstItem="PlU-hg-uBa" firstAttribute="centerY" secondItem="kOK-9A-m34" secondAttribute="centerY" id="MKq-hi-vuS"/>
-                    <constraint firstAttribute="bottom" secondItem="Lhf-vo-Dna" secondAttribute="bottom" constant="30" id="UI5-Af-x9I"/>
-                    <constraint firstItem="Pqq-s3-6XP" firstAttribute="leading" secondItem="Lhf-vo-Dna" secondAttribute="trailing" constant="8" id="Y1r-j8-zAJ"/>
+                    <constraint firstItem="Pqq-s3-6XP" firstAttribute="leading" secondItem="Lhf-vo-Dna" secondAttribute="trailing" constant="5" id="TqK-wt-oEn"/>
+                    <constraint firstItem="2Ta-0c-ZHo" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="15" id="Yea-8Y-nH2"/>
                     <constraint firstAttribute="trailing" secondItem="Pqq-s3-6XP" secondAttribute="trailing" constant="20" id="ZvS-2M-L6j"/>
+                    <constraint firstItem="Pqq-s3-6XP" firstAttribute="bottom" secondItem="4tY-hU-dbg" secondAttribute="bottom" constant="1" id="bIM-EJ-hfE"/>
                     <constraint firstItem="Pqq-s3-6XP" firstAttribute="leading" secondItem="4tY-hU-dbg" secondAttribute="trailing" constant="5" id="c1G-hT-rf4"/>
-                    <constraint firstItem="rAd-jC-Kuh" firstAttribute="bottom" secondItem="2Ta-0c-ZHo" secondAttribute="bottom" constant="10" id="lo4-ko-47S"/>
-                    <constraint firstItem="rAd-jC-Kuh" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="25" id="mmf-8o-9oU"/>
+                    <constraint firstItem="Lhf-vo-Dna" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="15" id="hfh-ia-dTn"/>
+                    <constraint firstItem="rAd-jC-Kuh" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="15" id="mmf-8o-9oU"/>
                     <constraint firstItem="rAd-jC-Kuh" firstAttribute="leading" secondItem="PlU-hg-uBa" secondAttribute="trailing" constant="10" id="o9B-O3-RNA"/>
-                    <constraint firstItem="Pqq-s3-6XP" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="25" id="s71-s2-dWM"/>
-                    <constraint firstAttribute="bottom" secondItem="rAd-jC-Kuh" secondAttribute="bottom" constant="25" id="uWL-fX-Mud"/>
+                    <constraint firstItem="Pqq-s3-6XP" firstAttribute="top" secondItem="kOK-9A-m34" secondAttribute="top" constant="15" id="s71-s2-dWM"/>
+                    <constraint firstAttribute="bottom" secondItem="rAd-jC-Kuh" secondAttribute="bottom" constant="37" id="uWL-fX-Mud"/>
                     <constraint firstItem="2Ta-0c-ZHo" firstAttribute="leading" secondItem="rAd-jC-Kuh" secondAttribute="trailing" constant="5" id="xPq-Vt-cgL"/>
                 </constraints>
             </tableViewCellContentView>
@@ -88,9 +88,10 @@
                 <outlet property="myMessageTextViewWithConstraint" destination="lwc-Fl-EyR" id="tAs-q7-cSb"/>
                 <outlet property="partnerDateLabel" destination="2Ta-0c-ZHo" id="N2E-Zf-PsW"/>
                 <outlet property="partnerMessageTextView" destination="rAd-jC-Kuh" id="pKQ-TX-k9S"/>
+                <outlet property="partnerMessageTextViewWithConstraint" destination="Sse-uM-3Gj" id="GaY-Ci-Ns2"/>
                 <outlet property="userImageView" destination="PlU-hg-uBa" id="SR7-F9-w9o"/>
             </connections>
-            <point key="canvasLocation" x="-877.536231884058" y="-16.071428571428569"/>
+            <point key="canvasLocation" x="-881.15942028985512" y="-16.40625"/>
         </tableViewCell>
     </objects>
     <resources>
