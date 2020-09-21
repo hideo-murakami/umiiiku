@@ -43,11 +43,16 @@ class ChatRoomTableViewCell: UITableViewCell{
         super.awakeFromNib()
         
         backgroundColor = .clear
-        userImageView.layer.cornerRadius = 30
+        userImageView.layer.cornerRadius = 25
         partnerMessageTextView.layer.cornerRadius = 15
         myMessageTextView.layer.cornerRadius = 15
         myMessageTextView.textColor = UIColor.black
         
+    }
+    
+    override func prepareForReuse() {
+        myMessageTextView.text = nil
+        partnerMessageTextView.text = nil
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,7 +63,6 @@ class ChatRoomTableViewCell: UITableViewCell{
     
     private func checkWhichUserMessage() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        print("メッセージget2")
         
         if uid == message?.uid {
             partnerMessageTextView.isHidden = true
@@ -83,8 +87,9 @@ class ChatRoomTableViewCell: UITableViewCell{
             
             if let message = message{
                 myMessageTextView.text = message.message
-                let width = estimateFrameForTextView(text: message.message).width + 20
+                let width = estimateFrameForTextView(text: message.message).width + 23
                 myMessageTextViewWithConstraint.constant = CGFloat(width)
+                myMessageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
                 myDateLabel.text = dataFormatterForDateLable(date: message.createAt.dateValue())
             }
             
@@ -103,8 +108,9 @@ class ChatRoomTableViewCell: UITableViewCell{
                 
             if let message = message{
                 partnerMessageTextView.text = message.message
-                let width = estimateFrameForTextView(text: message.message).width + 20
+                let width = estimateFrameForTextView(text: message.message).width + 23
                 partnerMessageTextViewWithConstraint.constant = CGFloat(width)
+                partnerMessageTextView.textContainerInset = UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
                 partnerDateLabel.text = dataFormatterForDateLable(date: message.createAt.dateValue())
             }
         }
@@ -119,13 +125,13 @@ class ChatRoomTableViewCell: UITableViewCell{
         
         return NSString(string: text).boundingRect(with: size, options: options, attributes:
             [NSAttributedString.Key.font: UIFont(name: "HiraginoSans-W3", size: 14) ?? 0], context: nil)    }
-//            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)    }
     
     
     private func dataFormatterForDateLable(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter.string(from: date)
     }

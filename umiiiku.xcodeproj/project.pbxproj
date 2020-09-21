@@ -14,7 +14,10 @@
 		C117DC8324BC192A001A5AB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117DC8224BC192A001A5AB6 /* User.swift */; };
 		C120C24A24CD048E00BC366D /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120C24924CD048D00BC366D /* UIImage-Extension.swift */; };
 		C12C6DD024C3E30A0092703D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12C6DCF24C3E30A0092703D /* LoginViewController.swift */; };
+		C14B182325048D88001D8A43 /* UserPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C14B182225048D88001D8A43 /* UserPage.storyboard */; };
+		C14B1827250491E8001D8A43 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14B1826250491E8001D8A43 /* UserPageViewController.swift */; };
 		C14E68E524C0248E00D2C9EC /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14E68E424C0248E00D2C9EC /* ChatRoom.swift */; };
+		C15BCCA92515E3A2009B4E1C /* UmiiikerBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15BCCA82515E3A2009B4E1C /* UmiiikerBot.swift */; };
 		C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E624CA79610077FE5D /* BlockViewController.swift */; };
 		C17B47E924CBEBCD0077FE5D /* BlockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */; };
 		C17B47F324CC29D00077FE5D /* BaseTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */; };
@@ -78,7 +81,10 @@
 		C117DC8224BC192A001A5AB6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C120C24924CD048D00BC366D /* UIImage-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extension.swift"; sourceTree = "<group>"; };
 		C12C6DCF24C3E30A0092703D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C14B182225048D88001D8A43 /* UserPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserPage.storyboard; sourceTree = "<group>"; };
+		C14B1826250491E8001D8A43 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		C14E68E424C0248E00D2C9EC /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		C15BCCA82515E3A2009B4E1C /* UmiiikerBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmiiikerBot.swift; sourceTree = "<group>"; };
 		C1733ECB24DEF7E200CC6254 /* umiiiku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = umiiiku.entitlements; sourceTree = "<group>"; };
 		C17B47E624CA79610077FE5D /* BlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockViewController.swift; sourceTree = "<group>"; };
 		C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInfo.swift; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				C14E68E424C0248E00D2C9EC /* ChatRoom.swift */,
 				C1ECFBA424C2C13A00443D4C /* Message.swift */,
 				C1E78FEB24E711E1009C5031 /* MessageID.swift */,
+				C15BCCA82515E3A2009B4E1C /* UmiiikerBot.swift */,
 				C17DAC3E24C67C7600049807 /* BlockChatRoom.swift */,
 				C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */,
 			);
@@ -244,6 +251,7 @@
 				C12C6DCF24C3E30A0092703D /* LoginViewController.swift */,
 				C17B47E624CA79610077FE5D /* BlockViewController.swift */,
 				C17B47F624CC2B550077FE5D /* MyPageViewController.swift */,
+				C14B1826250491E8001D8A43 /* UserPageViewController.swift */,
 				C17B47F824CC2D960077FE5D /* BaseTabBarController.swift */,
 			);
 			path = Controllers;
@@ -259,6 +267,7 @@
 				C10CE50724C3DF240002BE35 /* Login.storyboard */,
 				C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */,
 				C17B47F424CC2A8B0077FE5D /* MyPage.storyboard */,
+				C14B182225048D88001D8A43 /* UserPage.storyboard */,
 				C1B99A0024B956F300A33D64 /* LaunchScreen.storyboard */,
 			);
 			path = StortBoards;
@@ -422,6 +431,7 @@
 				C1D3DA2724B9BC5700916BB7 /* ChatRoom.storyboard in Resources */,
 				C1C79E2024BAE29300323E06 /* SignUp.storyboard in Resources */,
 				C10CE50824C3DF240002BE35 /* Login.storyboard in Resources */,
+				C14B182325048D88001D8A43 /* UserPage.storyboard in Resources */,
 				C1D3DA3624BADD9400916BB7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,12 +560,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C15BCCA92515E3A2009B4E1C /* UmiiikerBot.swift in Sources */,
 				C1B999F624B956EE00A33D64 /* AppDelegate.swift in Sources */,
 				C17B47E924CBEBCD0077FE5D /* BlockInfo.swift in Sources */,
 				C17B47F924CC2D960077FE5D /* BaseTabBarController.swift in Sources */,
 				C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */,
 				C1D3DA3424BA99E300916BB7 /* ChatInputAccessoryView.swift in Sources */,
 				C1056A2F24FA33A10085429F /* UITextField-Extension.swift in Sources */,
+				C14B1827250491E8001D8A43 /* UserPageViewController.swift in Sources */,
 				C17DAC3F24C67C7600049807 /* BlockChatRoom.swift in Sources */,
 				C1C79E2224BAE71D00323E06 /* SignUpViewController.swift in Sources */,
 				C1B99A2824B959C600A33D64 /* ChatListViewController.swift in Sources */,

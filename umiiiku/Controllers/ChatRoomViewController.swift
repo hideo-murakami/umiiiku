@@ -18,6 +18,7 @@ class ChatRoomViewController: UIViewController {
     var dNumber: Double = 1
     var messageProfileImageUrl: String = ""
     var visible: Bool = true
+    var chatCount: Int = 0
     
     private var messages = [Message]() {
         didSet{
@@ -143,8 +144,64 @@ class ChatRoomViewController: UIViewController {
 
         if let chatroomDocId = chatroom?.documentId {
             listenForMessages(chatroomDocId: chatroomDocId)
-            
+            fetchChatCountFromFirestore(chatroomDocId: chatroomDocId)
         }else { return }
+    }
+    
+    private func fetchChatCountFromFirestore(chatroomDocId: String) {
+        Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages").getDocuments { (snapshots, err) in
+            if let err = err {
+                print("チャットカウント情報の取得に失敗しました。\(err)")
+                return
+            }
+            
+            let umiiikerBotChatCount = snapshots?.documents.count
+            
+            Firestore.firestore().collection("umiiikerBots").getDocuments { (snapshots, err) in
+                if let err = err {
+                    print("umiiikerBot情報の取得に失敗しました。\(err)")
+                    return
+                }
+                
+                snapshots?.documents.forEach ({ (snapshot) in
+                    let dic = snapshot.data()
+                    let bot = UmiiikerBot(dic: dic)
+                    
+                    if umiiikerBotChatCount == bot.chatCount {
+                        let messageId = self.randomString(length: 20)
+                            
+                            guard let name = self.chatroom?.partnerUser1?.username else { return }
+                            guard let profileImageUrl = self.chatroom?.partnerUser1?.profileImageUrl else { return }
+                            guard let chatUsername = self.user?.username else { return }
+                            guard let chatUsername1 = self.chatroom?.partnerUser?.username else { return }
+                            
+                        let  messageText = "\(chatUsername)さん、\(chatUsername1)さん、" + bot.chatText
+                        
+                            let docData = [
+                                "name": name,
+                                "createAt": Timestamp(),
+                                "uid": self.umiiikerId,
+                                "profileImageUrl": profileImageUrl,
+                                "isRead": false,
+                                "message": messageText
+                                ] as [String : Any]
+                            
+                            Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages")
+                                .document(messageId).setData(docData) { (err) in
+                                    if let err = err {
+                                        print("メッセージ情報の保存に失敗しました。\(err)")
+                                        return
+                                    }
+                                print("初回メッセージの保存に成功しました。")
+                                self.chatRoomTableView.reloadData()
+                            }
+                            
+                        }
+                    
+                })
+            
+            }
+        }
     }
     
     private func listenForMessages(chatroomDocId: String) {
@@ -161,8 +218,6 @@ class ChatRoomViewController: UIViewController {
                 let dic = documentChange.document.data()
                 let messageDocumentID = documentChange.document.documentID
                 
-                print("メッセージget")
-                
                 let message = Message(dic: dic)
                 let docData = [
                       "messageID": messageDocumentID,
@@ -171,14 +226,14 @@ class ChatRoomViewController: UIViewController {
                 
                 let messageID = MessageID(dic: docData)
                 
-                print("uid", uid)
-                print("message.uid", message.uid)
-                print("messageDocumentID", messageDocumentID)
+//                print("uid", uid)
+//                print("message.uid", message.uid)
+//                print("messageDocumentID", messageDocumentID)
                 
                 switch documentChange.type {
                 case .added:
                     
-                    if self.visible == true && message.uid != uid && message.uid != self.umiiikerId {
+                    if self.visible == true && message.uid != uid && message.uid != self.umiiikerId && uid != self.umiiikerId {
                         
                         if message.isRead == false {
                             let isReadData = [
@@ -233,6 +288,7 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
         guard let profileImageUrl = user?.profileImageUrl else { return }
         chatInputAccessoryView.removeText()
         let messageId = randomString(length: 20)
+        self.chatCount += 1
         
         let docData = [
             "name": name,
@@ -263,6 +319,18 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
                         
                     }
                     print("メッセージの保存に成功しました")
+                }
+                
+                let docData2 = [
+                    "chatCount": self.chatCount
+                    ] as [String : Any]
+                
+                Firestore.firestore().collection("users").document(uid).updateData(docData2) { (err) in
+                        if let err = err {
+                            print("メッセージ情報の保存に失敗しました。\(err)")
+                            return
+                        }
+                    print("チャットカウントの保存に成功しました", self.chatCount)
                     self.chatRoomTableView.reloadData()
                 }
         }
@@ -286,7 +354,7 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        chatRoomTableView.estimatedRowHeight = 1
+        chatRoomTableView.estimatedRowHeight = 5
         return UITableView.automaticDimension
     }
     
@@ -302,7 +370,6 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
         blockChatRoomId.blockChatRoomId = chatroom?.documentId ?? ""
         self.navigationController?.present(blockChatRoomId, animated: true)
     }
-    print("messages.count",messages.count)
     return messages.count
 }
 
@@ -310,8 +377,6 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     let cell = chatRoomTableView.dequeueReusableCell(withIdentifier: cellId,for:indexPath) as! ChatRoomTableViewCell
     cell.transform = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: 0)
     cell.message = messages[indexPath.row]
-    print("indexPath.row",indexPath.row)
-    print("messages[indexPath.row]",messages[indexPath.row])
     cell.chatroomDocId = (chatroom?.documentId! ?? "") as String
     cell.messageID = messageIDs[indexPath.row]
     return cell

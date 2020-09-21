@@ -26,15 +26,29 @@ class ChatListViewController: UIViewController{
         }
     }
     
+    @IBOutlet weak var chatListEmptyButton: UIButton!
     @IBOutlet weak var chatListTableView: UITableView!
+    @IBOutlet weak var emptyView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        confirmLoggedInUser()
-        badgeManage()
         setupViews()
+        handelEmptyView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.chatListTableView.reloadData()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        badgeManage()
+        confirmLoggedInUser()
+        fetchLoginUserInfo()
+        fetchChatroomsInfoFromFirestore()
+    }
     
     func badgeManage(){
         DispatchQueue.main.async {
@@ -42,14 +56,21 @@ class ChatListViewController: UIViewController{
             UIApplication.shared.applicationIconBadgeNumber = 0
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchLoginUserInfo()
-        fetchChatroomsInfoFromFirestore()
+
+    func handelEmptyView(){
+        print("chatrooms.count",chatrooms.count)
+        if (chatrooms.count == 0) {
+            chatListTableView.backgroundView = emptyView
+        } else {
+            chatListTableView.backgroundView = nil
+        }
+        
+        
     }
     
     func fetchChatroomsInfoFromFirestore(){
+        
+        guard (Auth.auth().currentUser?.uid) != nil else { return }
 
         chatRoomListener?.remove()
         chatrooms.removeAll()
@@ -169,6 +190,7 @@ class ChatListViewController: UIViewController{
 
         if latestMessageId == "" {
             self.chatrooms.append(chatroom)
+            handelEmptyView()
             self.chatListTableView.reloadData()
             return
         }
@@ -188,7 +210,9 @@ class ChatListViewController: UIViewController{
             chatroom.latestMessage = message
                 
             if chatroom.blockStatus != "blocked" {
-            self.chatrooms.append(chatroom) }
+                self.chatrooms.append(chatroom)
+                self.handelEmptyView()
+                }
             self.chatrooms.sort { (m1, m2) -> Bool in
                 let m1Date = self.dataFormatterForDateLable(date: m1.latestMessage?.createAt.dateValue() ?? Date())
                 let m2Date = self.dataFormatterForDateLable(date: m2.latestMessage?.createAt.dateValue() ?? Date())
@@ -239,11 +263,18 @@ class ChatListViewController: UIViewController{
         navigationItem.rightBarButtonItem?.tintColor = .white
         navigationItem.leftBarButtonItem = logoutBarButton
         navigationItem.leftBarButtonItem?.tintColor = .white
+        
+        chatListEmptyButton.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
+        chatListEmptyButton.titleLabel!.numberOfLines = 2
+        chatListEmptyButton.titleLabel!.textAlignment = NSTextAlignment.center
+        
+        chatListEmptyButton.addTarget(self, action: #selector(tappedNavRightBarButton), for: .touchUpInside)
     }
     
     @objc private func tappedLogoutBarButton(){
         do {
             try Auth.auth().signOut()
+            print("ログアウトに成功しました。")
             pushLoginViewController()
         } catch {
             print("ログアウトに失敗しました。\(error)")
@@ -315,6 +346,7 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource{
         let storyboard = UIStoryboard.init(name: "ChatRoom", bundle: nil)
         let chatRoomViewController = storyboard.instantiateViewController(withIdentifier: "ChatRoomViewController") as! ChatRoomViewController
         chatRoomViewController.user = user
+        chatRoomViewController.chatCount = (user?.chatCount ?? 0) as Int
         chatRoomViewController.chatroom = chatrooms[safe: indexPath.row]
         chatRoomViewController.umiiikerId = self.umiiikerId
         navigationController?.pushViewController(chatRoomViewController, animated: true)
@@ -398,6 +430,7 @@ class ChatListTableViewCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
         formatter.locale = Locale(identifier: "ja_JP")
         return formatter.string(from: date)
     }

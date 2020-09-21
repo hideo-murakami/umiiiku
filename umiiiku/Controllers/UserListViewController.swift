@@ -32,6 +32,21 @@ class UserListViewController: UIViewController {
         startChatButton.addTarget(self, action: #selector(tappedStartChatButton), for: .touchUpInside)
         navigationController?.navigationBar.barTintColor = .rgb(red: 39, green: 49, blue: 69)
         fetchUserInfoFromFirestore()
+        
+//        let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(
+//            target: self,
+//            action: #selector(UserListViewController.tappedUserImage(_:)))
+//
+//        // デリゲートをセット
+//        tapGesture.delegate = self
+//
+//        self.view.addGestureRecognizer(tapGesture)
+    }
+   
+    @objc func tappedUserImage(_ sender: UITapGestureRecognizer){
+        if sender.state == .ended {
+            print("タップ")
+        }
     }
     
     @objc func tappedStartChatButton() {
@@ -89,8 +104,9 @@ class UserListViewController: UIViewController {
                         snapshots2?.documents.forEach ( { (snapshot2) in
                             let dic2 = snapshot2.data()
                             let chatroom = ChatRoom(dic: dic2)
-                            let isContain = chatroom.members.contains(user.uid ?? "")
-                            if isContain { self.chatroomvacant = false }
+                            let isMeContain = chatroom.members.contains(uid)
+                            let isPartnerContain = chatroom.members.contains(user.uid ?? "")
+                            if isMeContain && isPartnerContain { self.chatroomvacant = false }
                             
                         })
                         if self.chatroomvacant { self.users.append(user) }
@@ -103,7 +119,7 @@ class UserListViewController: UIViewController {
     
 }
 
-extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
+extension UserListViewController: UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
@@ -114,6 +130,14 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         startChatButton.isEnabled = true
+        print("username",users[indexPath.row].username)
+        
+        let storyboard = UIStoryboard.init(name: "UserPage", bundle: nil)
+        let userPageViewController = storyboard.instantiateViewController(withIdentifier: "UserPageViewController") as! UserPageViewController
+        let nav = UINavigationController(rootViewController: userPageViewController)
+        userPageViewController.userID = users[indexPath.row].uid ?? ""
+        self.present(nav, animated: true, completion: nil)
+        
         let user = users[indexPath.row]
         self.selectedUser = user
     }
@@ -130,6 +154,7 @@ class UserListTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         userImageView.layer.cornerRadius = 32.5

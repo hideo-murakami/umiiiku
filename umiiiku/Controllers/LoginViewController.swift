@@ -12,10 +12,13 @@ import PKHUD
 
 class LoginViewController: UIViewController {
     
+    var alertController: UIAlertController!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var dontHaveAccountButton: UIButton!
+    @IBOutlet weak var loginBGimage: UIImageView!
     
     
     override func viewDidLoad() {
@@ -24,6 +27,24 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = 8
         dontHaveAccountButton.addTarget(self, action: #selector(tappedDontHaveAccountButton), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
+        
+        if (UITraitCollection.current.userInterfaceStyle == .dark) {
+            /* ダークモード時の処理 */
+            loginBGimage.image = UIImage(named:"BG_dark")
+        } else {
+            /* ライトモード時の処理 */
+            loginBGimage.image = UIImage(named:"BG_light")
+        }
+    }
+    
+    private func alert(title:String, message:String) {
+        alertController = UIAlertController(title: title,
+                                   message: message,
+                                   preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc private func tappedDontHaveAccountButton() {
@@ -39,15 +60,15 @@ class LoginViewController: UIViewController {
         if let err = err {
             print("ログインに失敗しました。\(err)")
             HUD.hide()
+            self.alert(
+                title: "情報が正しくありません",
+                message: "メールアドレス、パスワード（６文字以上）が正しくありません、再度正しい情報を入力してください"
+            )
             return
         }
         print("ログインに成功しました")
             
             HUD.hide()
-
-//            let nav = self.presentingViewController as! UINavigationController
-//            let chatListViewController = nav.viewControllers[nav.viewControllers.count-1] as? ChatListViewController
-//            chatListViewController?.fetchChatroomsInfoFromFirestore()
             
            self.dismiss(animated: true, completion: nil)
             

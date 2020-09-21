@@ -15,6 +15,8 @@ import PKHUD
 
 class SignUpViewController: UIViewController {
     
+    var alertController: UIAlertController!
+    
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,6 +24,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     
     @IBOutlet weak var alreadyHaveAccountButton: UIButton!
+    @IBOutlet weak var signUpBGimage: UIImageView!
     
 
     override func viewDidLoad() {
@@ -38,7 +41,7 @@ class SignUpViewController: UIViewController {
         
     profileImageButton.layer.cornerRadius = 85
     profileImageButton.layer.borderWidth = 1
-    profileImageButton.layer.borderColor = UIColor.rgb(red: 240, green: 240, blue: 240).cgColor
+    profileImageButton.layer.borderColor = UIColor.rgb(red: 60, green: 60, blue: 60).cgColor
     
     registerButton.layer.cornerRadius = 12
     
@@ -53,6 +56,23 @@ class SignUpViewController: UIViewController {
     registerButton.isEnabled = false
     registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
         
+    if (UITraitCollection.current.userInterfaceStyle == .dark) {
+        /* ダークモード時の処理 */
+        signUpBGimage.image = UIImage(named:"BG_dark")
+    } else {
+        /* ライトモード時の処理 */
+        signUpBGimage.image = UIImage(named:"BG_light")
+    }
+    }
+    
+    private func alert(title:String, message:String) {
+        alertController = UIAlertController(title: title,
+                                   message: message,
+                                   preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
         
     @objc private func tappedAlreadyHaveAccountButton(){
@@ -65,8 +85,8 @@ class SignUpViewController: UIViewController {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
-        
-        self.present(imagePickerController, animated: true, completion: nil)
+        self.present(imagePickerController, animated: true,
+                     completion:nil)
     }
     
     @objc private func tappedRegisterButton(){
@@ -93,9 +113,7 @@ class SignUpViewController: UIViewController {
                     HUD.hide()
                     return
                 }
-                
                 guard let urlString = url?.absoluteString else { return }
-                print("urlString", urlString)
                 self.createUserToFirebase(profileImageUrl: urlString)
             }
         }
@@ -110,6 +128,10 @@ class SignUpViewController: UIViewController {
             if let err = err {
                 print("Auth情報の保存に失敗しました。\(err)")
                 HUD.hide()
+                self.alert(
+                    title: "情報が正しくありません",
+                    message: "既に登録されているメースアドレスまたは、メールアドレス、パスワード（６文字以上）が正しくありません、再度正しい情報を入力してください"
+                )
                 return
             }
             print("認証情報の保存に成功しました。")
@@ -153,13 +175,13 @@ extension SignUpViewController: UITextFieldDelegate {
         let emailIsEmpty = emailTextField.text?.isEmpty ?? false
         let passwordIsEmpty = passwordTextField.text?.isEmpty ?? false
         let usernameIsEmpty = usernameTextField.text?.isEmpty ?? false
-        
-        if emailIsEmpty || passwordIsEmpty || usernameIsEmpty {
+        let profileImageIsEmpty = profileImageButton.imageView?.image
+        if !emailIsEmpty && !passwordIsEmpty && !usernameIsEmpty && (profileImageIsEmpty != nil) {
+            registerButton.isEnabled = true
+            registerButton.backgroundColor = .rgb(red: 0, green: 185, blue: 227)
+        } else {
             registerButton.isEnabled = false
             registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
-        } else {
-            registerButton.isEnabled = true
-            registerButton.backgroundColor = .rgb(red: 0, green: 185, blue: 0)
         }
     }
 
@@ -178,6 +200,18 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         profileImageButton.contentHorizontalAlignment = .fill
         profileImageButton.contentVerticalAlignment = .fill
         profileImageButton.clipsToBounds = true
+        
+        let emailIsEmpty = emailTextField.text?.isEmpty ?? false
+        let passwordIsEmpty = passwordTextField.text?.isEmpty ?? false
+        let usernameIsEmpty = usernameTextField.text?.isEmpty ?? false
+        let profileImageIsEmpty = profileImageButton.imageView?.image
+        if !emailIsEmpty && !passwordIsEmpty && !usernameIsEmpty && (profileImageIsEmpty != nil) {
+            registerButton.isEnabled = true
+            registerButton.backgroundColor = .rgb(red: 0, green: 185, blue: 227)
+        } else {
+            registerButton.isEnabled = false
+            registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
+        }
         
        dismiss(animated: true, completion: nil)
         

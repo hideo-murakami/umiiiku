@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "アセット 1.png",
+      "filename" : "BG_dark.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "アセット 1-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "アセット 1-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

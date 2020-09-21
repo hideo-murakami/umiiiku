@@ -34,10 +34,11 @@ class ChatInputAccessoryView: UIView, UITextFieldDelegate {
     private func setupViews() {
         
         chatTextView.layer.cornerRadius = 15
-        chatTextView.layer.borderColor = UIColor.rgb(red: 230, green: 230, blue: 230).cgColor
+        chatTextView.layer.borderColor = UIColor.rgb(red: 60, green: 60, blue: 60).cgColor
         chatTextView.layer.borderWidth = 1
         
-        chatTextView.textContainer.lineFragmentPadding = 15
+        //chatTextView.textContainer.lineFragmentPadding = 15
+        chatTextView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         sendButton.layer.cornerRadius = 155
         sendButton.inputView?.contentMode = .scaleAspectFill
