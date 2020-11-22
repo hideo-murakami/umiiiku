@@ -16,14 +16,16 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var userNameTextView: UITextView!
     @IBOutlet weak var blockCountLabel: UILabel!
     @IBOutlet weak var reportCountLabel: UILabel!
+    @IBOutlet weak var userLevelLabel: UILabel!
     
     private var user: User?
     
     private var blockCount = 0
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        navigationItem.title = "マイページ"
         fetchLoginUserInfo()
     }
     
@@ -75,6 +77,7 @@ class MyPageViewController: UIViewController {
             let dic = snapshot?.data()
             let user = User.init(dic: dic!)
             self.userNameTextView.text = user.username
+            self.userLevelLabel.text = String(user.userLevel)
             
             if let url = URL(string: user.profileImageUrl ) {
                 Nuke.loadImage(with: url, into: self.profileImageView)

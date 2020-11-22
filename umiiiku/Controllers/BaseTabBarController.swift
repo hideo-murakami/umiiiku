@@ -10,22 +10,34 @@ import UIKit
 
 class BaseTabBarController: UITabBarController {
     
+    enum ControllerName: Int {
+        case news,chat,mypage,map
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupViewControllers()
+        
+    }
+    
+    private func setupViewControllers(){
         viewControllers?.enumerated().forEach({ (index, viewController) in
             
-            switch index {
-                
-            case 0:
-                setTabbarInfo(viewController, selectedImageName: "chat-icon_on", unselectedImageName: "chat-icon_off", title: "チャット")
-                
-            case 1:
-                setTabbarInfo(viewController, selectedImageName: "profile-icon_on", unselectedImageName: "profile-icon_off", title: "マイページ")
-                
-            default:
-                break
-                
+            if let name = ControllerName.init(rawValue: index) {
+                switch name {
+                case .news:
+                    setTabbarInfo(viewController, selectedImageName: "news-icon_on", unselectedImageName: "news-icon_off", title: "ニュース")
+                    
+                case .chat:
+                    setTabbarInfo(viewController, selectedImageName: "chat-icon_on", unselectedImageName: "chat-icon_off", title: "チャット")
+                    
+                case .mypage:
+                    setTabbarInfo(viewController, selectedImageName: "profile-icon_on", unselectedImageName: "profile-icon_off", title: "マイページ")
+                    
+                case .map:
+                    setTabbarInfo(viewController, selectedImageName: "profile-icon_on", unselectedImageName: "profile-icon_off", title: "マップ")
+                }
             }
             
         })

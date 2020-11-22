@@ -13,7 +13,12 @@ import Nuke
 
 class ChatListViewController: UIViewController{
     
+    var chatRoomName: String = "chatRooms"
+    
     var umiiikerId: String = ""
+    var assistantId: String = ""
+    var assistantUsername: String = ""
+    var assistantProfileImageUrl: String = ""
     
     private let cellId = "cellId"
     private var chatrooms = [ChatRoom]()
@@ -33,11 +38,11 @@ class ChatListViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        handelEmptyView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        handelEmptyView()
         self.chatListTableView.reloadData()
     }
     
@@ -71,7 +76,7 @@ class ChatListViewController: UIViewController{
     func fetchChatroomsInfoFromFirestore(){
         
         guard (Auth.auth().currentUser?.uid) != nil else { return }
-
+        
         chatRoomListener?.remove()
         chatrooms.removeAll()
         Firestore.firestore().collection("umiiikers").getDocuments { (umiiikerSnapshots, err) in
@@ -79,27 +84,42 @@ class ChatListViewController: UIViewController{
                 print("umiiiker情報の取得に失敗しました。\(err)")
                 return
             }
+            
             umiiikerSnapshots?.documents.forEach ({ (umiiikerSnapshot) in
                 let dic = umiiikerSnapshot.data()
                 let umiiiker = Umiiiker.init(dic: dic)
                 self.umiiikerId = umiiiker.umiiikerId
                 
-                self.chatRoomListener = Firestore.firestore().collection("chatRooms")
-                    .addSnapshotListener{ (snapshots, err) in
-                        if let err = err {
-                            print("Chatrooms情報の取得に失敗しました。\(err)")
-                            return
-                        }
-                        snapshots?.documentChanges.forEach({ (documentChange) in
-                            switch documentChange.type {
-                            case .added:
-                                self.handleAddedDocumentChange(documentChange: documentChange)
-                            case .modified, .removed:
-                                print("nothing to do2")
+                Firestore.firestore().collection("assistants").getDocuments { (assistantSnapshots, err) in
+                    if let err = err {
+                        print("assistant情報の取得に失敗しました。\(err)")
+                        return
+                    }
+                    
+                    assistantSnapshots?.documents.forEach ({ (assistantSnapshot) in
+                        let dic1 = assistantSnapshot.data()
+                        let assistant = Assistant.init(dic: dic1)
+                        self.assistantId = assistant.assistantId
+                        self.assistantUsername = assistant.username
+                        self.assistantProfileImageUrl = assistant.profileImageUrl
+                        
+                        self.chatRoomListener = Firestore.firestore().collection("chatRooms")
+                            .addSnapshotListener{ (snapshots, err) in
+                                if let err = err {
+                                    print("Chatrooms情報の取得に失敗しました。\(err)")
+                                    return
+                                }
+                                snapshots?.documentChanges.forEach({ (documentChange) in
+                                    switch documentChange.type {
+                                    case .added:
+                                        self.handleAddedDocumentChange(documentChange: documentChange)
+                                    case .modified, .removed:
+                                        print("nothing to do2")
+                                    }
+                                })
                             }
-                        })
+                    })
                 }
-                
             })
         }
     }
@@ -209,7 +229,7 @@ class ChatListViewController: UIViewController{
             let message = Message(dic: dic)
             chatroom.latestMessage = message
                 
-            if chatroom.blockStatus != "blocked" {
+                if chatroom.blockStatus != "blocked" {
                 self.chatrooms.append(chatroom)
                 self.handelEmptyView()
                 }
@@ -220,6 +240,19 @@ class ChatListViewController: UIViewController{
             }
             self.chatListTableView.reloadData()
         }
+    }
+    
+    func randomString(length: Int) -> String {
+            let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            let len = UInt32(letters.length)
+
+            var randomString = ""
+        for _ in 0 ..< length {
+                let rand = arc4random_uniform(len)
+                var nextChar = letters.character(at: Int(rand))
+                randomString += NSString(characters: &nextChar, length: 1) as String
+            }
+            return randomString
     }
     
     private func getUnReadCount(chatroom: ChatRoom,membersID: String) {
@@ -294,6 +327,7 @@ class ChatListViewController: UIViewController{
         let userListViewController = storyboard.instantiateViewController(withIdentifier: "UserListViewController") as! UserListViewController
         let nav = UINavigationController(rootViewController: userListViewController)
         userListViewController.umiiikerId = self.umiiikerId
+        userListViewController.myLevel = self.user?.userLevel ?? 0
         self.present(nav, animated: true, completion: nil)
     }
     
@@ -348,13 +382,18 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource{
         chatRoomViewController.user = user
         chatRoomViewController.chatCount = (user?.chatCount ?? 0) as Int
         chatRoomViewController.chatroom = chatrooms[safe: indexPath.row]
+        chatRoomViewController.chatRoomName = self.chatRoomName
         chatRoomViewController.umiiikerId = self.umiiikerId
+        chatRoomViewController.assistantId = self.assistantId
+        chatRoomViewController.assistantUsername = self.assistantUsername
+        chatRoomViewController.assistantProfileImageUrl = self.assistantProfileImageUrl
         navigationController?.pushViewController(chatRoomViewController, animated: true)
     }
 }
 
 class ChatListTableViewCell: UITableViewCell {
     
+    var chatRoomName: String = ""
     var umiiikerId: String = ""
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -382,7 +421,7 @@ class ChatListTableViewCell: UITableViewCell {
                     guard let uid = Auth.auth().currentUser?.uid else { return }
                     for PartnerID in chatroom.members {
                         if PartnerID != uid && PartnerID != umiiikerId {
-                            self.getUnReadCount(chatroom: chatroom,membersID: PartnerID)
+                            self.getUnReadCount(chatroom: chatroom,membersID: PartnerID,chatRoomName: self.chatRoomName)
                         }
                     }
                     
@@ -404,7 +443,7 @@ class ChatListTableViewCell: UITableViewCell {
             Nuke.loadImage(with: url2, into: user2ImageView)
     }
     
-    private func getUnReadCount(chatroom: ChatRoom,membersID: String) {
+    private func getUnReadCount(chatroom: ChatRoom,membersID: String,chatRoomName: String) {
         guard let chatroomId = chatroom.documentId else { return }
         
         Firestore.firestore()

@@ -18,6 +18,7 @@ class User{
     let profileImageUrl: String
     let token: String
     let chatCount: Int
+    let userLevel: Int
     
     var uid: String?
     
@@ -28,6 +29,7 @@ class User{
         self.profileImageUrl = dic["profileImageUrl"] as? String ?? ""
         self.token = dic["token"] as? String ?? ""
         self.chatCount = dic["chatCount"] as? Int ?? 0
+        self.userLevel = dic["userLevel"] as? Int ?? 0
         
     }
     

@@ -12,13 +12,21 @@ import FirebaseFirestore
 
 class ChatRoomViewController: UIViewController {
     
+    var alertController: UIAlertController!
+    var assistantMessageText: String = ""
+    
     var user: User?
     var chatroom: ChatRoom?
+    var chatRoomName: String = "chatRooms"
     var umiiikerId: String = ""
+    var assistantId: String = ""
+    var assistantUsername: String = ""
+    var assistantProfileImageUrl: String = ""
     var dNumber: Double = 1
     var messageProfileImageUrl: String = ""
     var visible: Bool = true
     var chatCount: Int = 0
+    var lastMessage: String = ""
     
     private var messages = [Message]() {
         didSet{
@@ -141,6 +149,7 @@ class ChatRoomViewController: UIViewController {
         
         messages.removeAll()
         messageIDs.removeAll()
+        self.chatroom?.lastSpeakerCount = 0
 
         if let chatroomDocId = chatroom?.documentId {
             listenForMessages(chatroomDocId: chatroomDocId)
@@ -192,7 +201,7 @@ class ChatRoomViewController: UIViewController {
                                         print("メッセージ情報の保存に失敗しました。\(err)")
                                         return
                                     }
-                                print("初回メッセージの保存に成功しました。")
+                                print("botメッセージの保存に成功しました。")
                                 self.chatRoomTableView.reloadData()
                             }
                             
@@ -262,6 +271,7 @@ class ChatRoomViewController: UIViewController {
                         let m2Date = m2.createAt.dateValue()
                         return m1Date > m2Date
                     }
+
                     self.chatRoomTableView.reloadData()
                     
                 case .modified, .removed:
@@ -269,9 +279,32 @@ class ChatRoomViewController: UIViewController {
                     print("none action")
                 }
             })
+            
+            if self.messages.isEmpty { return }
+            let lastMessage = self.messages[0]
+            self.chatroom?.lastSpeakerUid = lastMessage.uid
+            self.chatroom?.lastSpeakerCount = 0
+            
+            if self.messages.count > 1 {
+                
+                for (index, message) in self.messages.enumerated() {
+                    print(index, message.uid, message.message)
+                    let lastMessage = self.messages[index]
+                    if index > 0 { let lastPreviousMessage = self.messages[index - 1]
+                        if lastMessage.uid == lastPreviousMessage.uid {
+                            self.chatroom?.lastSpeakerCount += 1
+                        } else {
+                            print("self.chatroom?.lastSpeakerCount",self.chatroom?.lastSpeakerCount ?? 9999)
+                            return
+                        }
+                        
+                    }
+                }
+                    
+                }
+            }
         }
     }
-}
 
 
 
@@ -284,11 +317,27 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
     private func addMessageToFirestore(text: String) {
         guard let chatroomDocId = chatroom?.documentId else { return }
         guard let name = user?.username else { return }
+        guard let level = user?.userLevel else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let profileImageUrl = user?.profileImageUrl else { return }
         chatInputAccessoryView.removeText()
+        guard let chatLimitCount = self.chatroom?.lastSpeakerCount else { return }
+        let speakerLevel = level - 1
+        print("speakerLevel",speakerLevel)
+        
+        if self.chatroom?.lastSpeakerUid == uid && chatLimitCount >= speakerLevel {
+            alert(title: "連続で投稿できません",
+                  message: "レベル数までしか連続で投稿できませんので、お相手の発言があるまでお待ちください")
+            return
+        }
+        
         let messageId = randomString(length: 20)
         self.chatCount += 1
+        self.chatroom?.lastSpeakerUid = uid
+        
+        print("self.chatroom?.lastSpeakerUid", self.chatroom?.lastSpeakerUid ?? "err")
+        print("chatLimitCount", chatLimitCount)
+        print("speakerLevel", speakerLevel)
         
         let docData = [
             "name": name,
@@ -331,8 +380,83 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
                             return
                         }
                     print("チャットカウントの保存に成功しました", self.chatCount)
+                    
+                    let userLevel = floor(Double(self.chatCount / 360)) + 1
+                    
+                    let docData3 = [
+                        "userLevel": userLevel
+                        ] as [String : Any]
+                    
+                    Firestore.firestore().collection("users").document(uid).updateData(docData3) { (err) in
+                            if let err = err {
+                                print("レベル情報の保存に失敗しました。\(err)")
+                                return
+                            }
+                    
+                    print("レベル情報の保存に成功しました", userLevel)
+                    }
+                        
                     self.chatRoomTableView.reloadData()
                 }
+                
+                guard let isContainAssistant = self.chatroom?.members.contains(self.assistantId) else { return }
+                if !isContainAssistant { return }
+                    
+                let assistantDefaultMessageText = [
+                    "ごめんなさい「アプリについて」「チャットについて」「レベルについて」の質問なら答えられるわよ！",
+                    "カナとのチャットに飽きたら、右上の新規チャットからお相手を選んでチャットを楽しんでね",
+                    "このアプリについては知ってる？",
+                    "大丈夫？会話噛み合ってるか心配ですぅ",
+                    "レベルって何のことだかわかる？"]
+                self.assistantMessageText = assistantDefaultMessageText.randomItem() ?? "ん？？ごめんね、ちょっとよくわからない" // Note: myItem is an Optional<Int>
+                let greetingWordList = ["どうも", "ども", "よろしく", "こんにち", "おはよ", "こんばん", "名前","なまえ", "はじめまして"]
+                let greetingSuccess = greetingWordList.contains(where: { text.contains($0) })
+                if greetingSuccess {self.assistantMessageText = "カナです！よろしくお願いします。"}
+                
+                let jobWordList = ["仕事", "しごと", "何して", "なにして", "やくわり", "役割", "ミッション","やること", "やってる"]
+                let jobSuccess = jobWordList.contains(where: { text.contains($0) })
+                if jobSuccess {self.assistantMessageText = "カナはこのアプリのアシスタントをしています、よろしくね！"}
+                
+                let yesWordList = ["はい", "知って", "知って", "しってる", "もちろん", "yes", "イエス","YES", "うん"]
+                let yesSuccess = yesWordList.contains(where: { text.contains($0) })
+                if yesSuccess {self.assistantMessageText = "いいね、他にチャットしたいことありますかー"}
+                
+                let noWordList = ["いいえ", "知ら", "分からない", "しらない", "いや", "no", "ノー","NO", "ううん"]
+                let noSuccess = noWordList.contains(where: { text.contains($0) })
+                if noSuccess {self.assistantMessageText = "そうなんだ、アプリについてならお話しできますっ！"}
+                
+                let appWordList = ["アプリ", "umiiiku"]
+                let appSuccess = appWordList.contains(where: { text.contains($0) })
+                if appSuccess {self.assistantMessageText = "チャットをしてレベルを上げるゲームみたい、レベルが上がるといろんなイベントに参加できるみたいだよ！"}
+                
+                let chatWordList = ["チャット", "chat", "会話", "やりとり"]
+                let chatSuccess = chatWordList.contains(where: { text.contains($0) })
+                if chatSuccess {self.assistantMessageText = "このアプリでは同じレベルか一つ上のレベルのチャット相手を選んで、チャット力を鍛えていろんな会話をして楽しめるみたいだよ"}
+                
+                let levelWordList = ["レベル", "LEVEL", "level"]
+                let levelSuccess = levelWordList.contains(where: { text.contains($0) })
+                if levelSuccess {self.assistantMessageText = "チャットをたくさんするとレベルアップするらしいよ、レベル数だけ連続投稿ができるみたい！"}
+                
+                
+                let messageId = self.randomString(length: 20)
+                    
+                    let docData = [
+                        "name": self.assistantUsername,
+                        "createAt": Timestamp(),
+                        "uid": self.assistantId,
+                        "profileImageUrl": self.assistantProfileImageUrl,
+                        "isRead": false,
+                        "message": self.assistantMessageText
+                        ] as [String : Any]
+                    
+                    Firestore.firestore().collection("chatRooms").document(chatroomDocId).collection("messages")
+                        .document(messageId).setData(docData) { (err) in
+                            if let err = err {
+                                print("メッセージ情報の保存に失敗しました。\(err)")
+                                return
+                            }
+                        print("botメッセージの保存に成功しました。")
+                    }
         }
     }
     
@@ -347,6 +471,16 @@ extension ChatRoomViewController: ChatInputAccessoryViewDelegate {
                 randomString += NSString(characters: &nextChar, length: 1) as String
             }
             return randomString
+    }
+    
+    private func alert(title:String, message:String) {
+        alertController = UIAlertController(title: title,
+                                   message: message,
+                                   preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 
 }
@@ -380,5 +514,13 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     cell.chatroomDocId = (chatroom?.documentId! ?? "") as String
     cell.messageID = messageIDs[indexPath.row]
     return cell
+    }
+}
+
+extension Array {
+    func randomItem() -> Element? {
+        if isEmpty { return nil }
+        let index = Int(arc4random_uniform(UInt32(self.count)))
+        return self[index]
     }
 }

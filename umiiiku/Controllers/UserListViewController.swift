@@ -13,6 +13,7 @@ import Nuke
 class UserListViewController: UIViewController {
     
     var umiiikerId: String = ""
+    var myLevel: Int = 0
     
     private let cellId = "cellId"
     private var users = [User]()
@@ -98,7 +99,9 @@ class UserListViewController: UIViewController {
                         let user = User.init(dic: dic)
                         user.uid = snapshot.documentID
                         guard let uid = Auth.auth().currentUser?.uid else { return }
-                        if uid == snapshot.documentID || self.umiiikerId == snapshot.documentID {
+                        print("myLevel",self.myLevel)
+                        print("user.userLevel",user.userLevel)
+                        if uid == snapshot.documentID || self.umiiikerId == snapshot.documentID || user.userLevel > self.myLevel + 1 {
                             return
                         }
                         snapshots2?.documents.forEach ( { (snapshot2) in
@@ -147,6 +150,7 @@ class UserListTableViewCell: UITableViewCell {
     var user: User? {
         didSet{
             usernameLabel.text = user?.username
+            userLevelLabel.text = "L" + String(user?.userLevel ?? 0)
             if let url = URL(string: user?.profileImageUrl ?? "") {
                 Nuke.loadImage(with: url, into: userImageView)
             }
@@ -154,10 +158,12 @@ class UserListTableViewCell: UITableViewCell {
     }
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
-    
+    @IBOutlet weak var userLevelLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         userImageView.layer.cornerRadius = 32.5
+        userLevelLabel.layer.cornerRadius = 10
+        userLevelLabel.clipsToBounds = true
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

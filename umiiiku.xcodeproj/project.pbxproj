@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5618A95DBB34D41AF00C3533 /* Pods_umiiiku.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C23D0B5CC82FB5074BE57E3 /* Pods_umiiiku.framework */; };
+		C101BB8E255657DB0027AA07 /* Assistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C101BB8D255657DB0027AA07 /* Assistant.swift */; };
 		C1056A2D24F38B790085429F /* Umiiiker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1056A2C24F38B790085429F /* Umiiiker.swift */; };
 		C1056A2F24FA33A10085429F /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1056A2E24FA33A10085429F /* UITextField-Extension.swift */; };
 		C10CE50824C3DF240002BE35 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C10CE50724C3DF240002BE35 /* Login.storyboard */; };
@@ -18,6 +19,15 @@
 		C14B1827250491E8001D8A43 /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14B1826250491E8001D8A43 /* UserPageViewController.swift */; };
 		C14E68E524C0248E00D2C9EC /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14E68E424C0248E00D2C9EC /* ChatRoom.swift */; };
 		C15BCCA92515E3A2009B4E1C /* UmiiikerBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15BCCA82515E3A2009B4E1C /* UmiiikerBot.swift */; };
+		C169EEC82560DFDF00D55744 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169EEC72560DFDF00D55744 /* NewsViewController.swift */; };
+		C169EECD2560E07600D55744 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C169EECC2560E07600D55744 /* News.storyboard */; };
+		C16D8C8D255F8899008E24D0 /* NewsList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C16D8C8C255F8899008E24D0 /* NewsList.storyboard */; };
+		C16D8C92255F8AA0008E24D0 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16D8C91255F8AA0008E24D0 /* NewsListViewController.swift */; };
+		C16D8C97255F95E1008E24D0 /* NewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16D8C96255F95E1008E24D0 /* NewsListCell.swift */; };
+		C16D8C9C255F981F008E24D0 /* NewsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C16D8C9B255F981F008E24D0 /* NewsListCell.xib */; };
+		C16D8CC2255FA224008E24D0 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16D8CC1255FA224008E24D0 /* News.swift */; };
+		C1747B922568EB9400B9069B /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1747B912568EB9400B9069B /* Map.storyboard */; };
+		C1747B972568ED3400B9069B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1747B962568ED3400B9069B /* MapViewController.swift */; };
 		C17B47E724CA79610077FE5D /* BlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E624CA79610077FE5D /* BlockViewController.swift */; };
 		C17B47E924CBEBCD0077FE5D /* BlockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */; };
 		C17B47F324CC29D00077FE5D /* BaseTabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */; };
@@ -75,6 +85,7 @@
 		7AEF90DB57F71EA0ABF8D6C3 /* Pods-umiiikuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-umiiikuTests.release.xcconfig"; path = "Target Support Files/Pods-umiiikuTests/Pods-umiiikuTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B13687DA684A5C30C0D3E13 /* Pods-umiiiku-umiiikuUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-umiiiku-umiiikuUITests.debug.xcconfig"; path = "Target Support Files/Pods-umiiiku-umiiikuUITests/Pods-umiiiku-umiiikuUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C23D0B5CC82FB5074BE57E3 /* Pods_umiiiku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_umiiiku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C101BB8D255657DB0027AA07 /* Assistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assistant.swift; sourceTree = "<group>"; };
 		C1056A2C24F38B790085429F /* Umiiiker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Umiiiker.swift; sourceTree = "<group>"; };
 		C1056A2E24FA33A10085429F /* UITextField-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
 		C10CE50724C3DF240002BE35 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -85,7 +96,16 @@
 		C14B1826250491E8001D8A43 /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		C14E68E424C0248E00D2C9EC /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		C15BCCA82515E3A2009B4E1C /* UmiiikerBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmiiikerBot.swift; sourceTree = "<group>"; };
+		C169EEC72560DFDF00D55744 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		C169EECC2560E07600D55744 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		C16D8C8C255F8899008E24D0 /* NewsList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsList.storyboard; sourceTree = "<group>"; };
+		C16D8C91255F8AA0008E24D0 /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
+		C16D8C96255F95E1008E24D0 /* NewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListCell.swift; sourceTree = "<group>"; };
+		C16D8C9B255F981F008E24D0 /* NewsListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsListCell.xib; sourceTree = "<group>"; };
+		C16D8CC1255FA224008E24D0 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		C1733ECB24DEF7E200CC6254 /* umiiiku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = umiiiku.entitlements; sourceTree = "<group>"; };
+		C1747B912568EB9400B9069B /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		C1747B962568ED3400B9069B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C17B47E624CA79610077FE5D /* BlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockViewController.swift; sourceTree = "<group>"; };
 		C17B47E824CBEBCD0077FE5D /* BlockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInfo.swift; sourceTree = "<group>"; };
 		C17B47F224CC29D00077FE5D /* BaseTabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseTabBar.storyboard; sourceTree = "<group>"; };
@@ -171,7 +191,9 @@
 			isa = PBXGroup;
 			children = (
 				C117DC8224BC192A001A5AB6 /* User.swift */,
+				C16D8CC1255FA224008E24D0 /* News.swift */,
 				C1056A2C24F38B790085429F /* Umiiiker.swift */,
+				C101BB8D255657DB0027AA07 /* Assistant.swift */,
 				C14E68E424C0248E00D2C9EC /* ChatRoom.swift */,
 				C1ECFBA424C2C13A00443D4C /* Message.swift */,
 				C1E78FEB24E711E1009C5031 /* MessageID.swift */,
@@ -245,6 +267,9 @@
 			isa = PBXGroup;
 			children = (
 				C1B99A2724B959C600A33D64 /* ChatListViewController.swift */,
+				C16D8C91255F8AA0008E24D0 /* NewsListViewController.swift */,
+				C169EEC72560DFDF00D55744 /* NewsViewController.swift */,
+				C1747B962568ED3400B9069B /* MapViewController.swift */,
 				C1D3DA2824B9BCF500916BB7 /* ChatRoomViewController.swift */,
 				C1C79E2124BAE71D00323E06 /* SignUpViewController.swift */,
 				C1AA929124BCB0D7003328E6 /* UserListViewController.swift */,
@@ -261,7 +286,10 @@
 			isa = PBXGroup;
 			children = (
 				C1B99A2524B9585200A33D64 /* ChatList.storyboard */,
+				C16D8C8C255F8899008E24D0 /* NewsList.storyboard */,
+				C169EECC2560E07600D55744 /* News.storyboard */,
 				C1D3DA2624B9BC5700916BB7 /* ChatRoom.storyboard */,
+				C1747B912568EB9400B9069B /* Map.storyboard */,
 				C1C79E1F24BAE29300323E06 /* SignUp.storyboard */,
 				C1AA928F24BCAF67003328E6 /* UserList.storyboard */,
 				C10CE50724C3DF240002BE35 /* Login.storyboard */,
@@ -277,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				C1D3DA2A24B9C56600916BB7 /* ChatRoomTableViewCell.xib */,
+				C16D8C9B255F981F008E24D0 /* NewsListCell.xib */,
 				C1D3DA3124BA983400916BB7 /* ChatInputAccessoryView.xib */,
 			);
 			path = Xibs;
@@ -286,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				C1D3DA2C24B9C7EC00916BB7 /* ChatRoomTableViewCell.swift */,
+				C16D8C96255F95E1008E24D0 /* NewsListCell.swift */,
 				C1D3DA3324BA99E300916BB7 /* ChatInputAccessoryView.swift */,
 			);
 			path = Views;
@@ -379,7 +409,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "村上英夫";
 				TargetAttributes = {
 					C1B999F124B956EE00A33D64 = {
@@ -426,11 +456,15 @@
 				C1B999FF24B956F300A33D64 /* Assets.xcassets in Resources */,
 				C1B99A2624B9585200A33D64 /* ChatList.storyboard in Resources */,
 				C1D3DA3224BA983400916BB7 /* ChatInputAccessoryView.xib in Resources */,
+				C16D8C9C255F981F008E24D0 /* NewsListCell.xib in Resources */,
 				C17B47F324CC29D00077FE5D /* BaseTabBar.storyboard in Resources */,
 				C17B47F524CC2A8B0077FE5D /* MyPage.storyboard in Resources */,
 				C1D3DA2724B9BC5700916BB7 /* ChatRoom.storyboard in Resources */,
+				C1747B922568EB9400B9069B /* Map.storyboard in Resources */,
 				C1C79E2024BAE29300323E06 /* SignUp.storyboard in Resources */,
 				C10CE50824C3DF240002BE35 /* Login.storyboard in Resources */,
+				C169EECD2560E07600D55744 /* News.storyboard in Resources */,
+				C16D8C8D255F8899008E24D0 /* NewsList.storyboard in Resources */,
 				C14B182325048D88001D8A43 /* UserPage.storyboard in Resources */,
 				C1D3DA3624BADD9400916BB7 /* GoogleService-Info.plist in Resources */,
 			);
@@ -569,13 +603,17 @@
 				C1056A2F24FA33A10085429F /* UITextField-Extension.swift in Sources */,
 				C14B1827250491E8001D8A43 /* UserPageViewController.swift in Sources */,
 				C17DAC3F24C67C7600049807 /* BlockChatRoom.swift in Sources */,
+				C101BB8E255657DB0027AA07 /* Assistant.swift in Sources */,
 				C1C79E2224BAE71D00323E06 /* SignUpViewController.swift in Sources */,
 				C1B99A2824B959C600A33D64 /* ChatListViewController.swift in Sources */,
 				C1E78FEC24E711E1009C5031 /* MessageID.swift in Sources */,
+				C1747B972568ED3400B9069B /* MapViewController.swift in Sources */,
 				C1D3DA2924B9BCF500916BB7 /* ChatRoomViewController.swift in Sources */,
 				C1AA929224BCB0D7003328E6 /* UserListViewController.swift in Sources */,
+				C16D8C97255F95E1008E24D0 /* NewsListCell.swift in Sources */,
 				C117DC8324BC192A001A5AB6 /* User.swift in Sources */,
 				C17B47F724CC2B550077FE5D /* MyPageViewController.swift in Sources */,
+				C16D8CC2255FA224008E24D0 /* News.swift in Sources */,
 				C120C24A24CD048E00BC366D /* UIImage-Extension.swift in Sources */,
 				C1D3DA2524B9B73900916BB7 /* UIColor-Extension.swift in Sources */,
 				C1D3DA2D24B9C7EC00916BB7 /* ChatRoomTableViewCell.swift in Sources */,
@@ -583,7 +621,9 @@
 				C1B999F824B956EE00A33D64 /* SceneDelegate.swift in Sources */,
 				C12C6DD024C3E30A0092703D /* LoginViewController.swift in Sources */,
 				C1056A2D24F38B790085429F /* Umiiiker.swift in Sources */,
+				C169EEC82560DFDF00D55744 /* NewsViewController.swift in Sources */,
 				C14E68E524C0248E00D2C9EC /* ChatRoom.swift in Sources */,
+				C16D8C92255F8AA0008E24D0 /* NewsListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +696,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -716,6 +757,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -762,7 +804,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = umiiiku;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -784,7 +826,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = umiiiku;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

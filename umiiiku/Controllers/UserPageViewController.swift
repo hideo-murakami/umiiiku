@@ -23,6 +23,7 @@ class UserPageViewController: UIViewController {
     @IBOutlet weak var blockCountLabel: UILabel!
     @IBOutlet weak var reportCountLabel: UILabel!
     @IBOutlet weak var chatCountLabel: UILabel!
+    @IBOutlet weak var userLevelLabel: UILabel!
     
     private var blockCount = 0
     var userID: String = ""
@@ -31,6 +32,7 @@ class UserPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "お相手の基本情報"
         fetchUserInfoFromFirestore(userID: userID)
     }
     
@@ -50,6 +52,7 @@ class UserPageViewController: UIViewController {
             let dic = snapshot?.data()
             let user = User.init(dic: dic!)
             self.userNameTextView.text = user.username
+            self.userLevelLabel.text = String(user.userLevel)
             
             if let url = URL(string: user.profileImageUrl ) {
                 Nuke.loadImage(with: url, into: self.profileImageView)

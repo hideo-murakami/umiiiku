@@ -142,7 +142,8 @@ class SignUpViewController: UIViewController {
                 "email": email,
                 "username": username,
                 "createAt": Timestamp(),
-                "profileImageUrl":profileImageUrl
+                "profileImageUrl":profileImageUrl,
+                "userLevel": 1
                 ] as [String : Any]
             
             Firestore.firestore().collection("users").document(uid).setData(docData) {

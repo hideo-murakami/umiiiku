@@ -17,6 +17,8 @@ class ChatRoom {
     let createAt: Timestamp
     
     var latestMessage : Message?
+    var lastSpeakerUid : String?
+    var lastSpeakerCount : Int = 0
     var documentId : String?
     var partnerUser : User?
     var partnerUser1 : User?

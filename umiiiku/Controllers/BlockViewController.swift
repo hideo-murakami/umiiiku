@@ -11,6 +11,8 @@ import Firebase
 
 class BlockViewController: UIViewController {
     
+    var alertController: UIAlertController!
+    
     private var blockUserId = ""
     private var reportUserId = ""
     
@@ -60,24 +62,29 @@ class BlockViewController: UIViewController {
     @objc private func tappeddislikeBlockButton() {
         reason = "話が合わない"
         print("reason:", reason)
-        addBlockToFirestore()
+        alert(title: "最終確認",
+              message: "\(reason)という理由でブロックしてよろしいですか")
+        //addBlockToFirestore()
 
     }
     @objc private func tappedviolenceBlockButton() {
         reason = "誹謗中傷・公序良俗に反する"
         print("reason:", reason)
-        addBlockToFirestore()
+        alert(title: "最終確認",
+              message: "\(reason)という理由でブロックしてよろしいですか")
 
     }
     @objc private func tappedspamBlockButton() {
         reason = "スパム・営業行為"
-                print("reason:", reason)
-        addBlockToFirestore()
+        print("reason:", reason)
+        alert(title: "最終確認",
+              message: "\(reason)という理由でブロックしてよろしいですか")
     }
     @objc private func tappedanotherBlockButton() {
         reason = "その他"
-                print("reason:", reason)
-        addBlockToFirestore()
+        print("reason:", reason)
+        alert(title: "最終確認",
+              message: "\(String(blockReasonTextField.text ?? ""))という理由でブロックしてよろしいですか")
     }
     
     @objc func tappedCloseBlockViewButton() {
@@ -160,22 +167,33 @@ class BlockViewController: UIViewController {
                 
             }
             print("ブロックステータスの変更に成功しました")
-            
-//            let storyboard = UIStoryboard.init(name: "ChatList", bundle: nil)
-//            let chatListViewController = storyboard.instantiateViewController(withIdentifier: "ChatListViewController")
-//            let nav = UINavigationController(rootViewController: chatListViewController)
-//            self.present(nav, animated: true, completion: nil)
-            
-//            let vc = ChatListViewController()
-//            let rootVC = UIApplication.shared.windows.first?.rootViewController as? UITabBarController
-//            let navigationController = rootVC?.children[0] as? UINavigationController
-//            rootVC?.selectedIndex = 0
-//            navigationController?.pushViewController(vc, animated: false)
-            
+                   
             self.dismiss(animated: true, completion: nil)
             
         }
         
+    }
+
+    private func alert(title:String, message:String) {
+        
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle:  UIAlertController.Style.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            self.addBlockToFirestore()
+        })
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            return
+        })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }
@@ -187,10 +205,10 @@ extension BlockViewController: UITextFieldDelegate {
         
         if blockReasonIsEmpty {
             anotherBlockButton.isEnabled = false
-            anotherBlockButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
+            //anotherBlockButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
         } else {
             anotherBlockButton.isEnabled = true
-            anotherBlockButton.backgroundColor = .rgb(red: 0, green: 185, blue: 0)
+            //anotherBlockButton.backgroundColor = .rgb(red: 0, green: 185, blue: 0)
         }
     }
     
